@@ -1,0 +1,8 @@
+{
+  "name": "LittleSentinel",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "1dd4a1be"
+}
