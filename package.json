@@ -34,7 +34,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "tsc && yarn lint && yarn test"
+      "pre-push": "tsc && yarn lint"
     }
   },
   "scripts": {
