@@ -15,7 +15,7 @@ import { IonApp } from '@ionic/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { RoutesMiddleware } from './pages/Routes.middleware';
+import { MainRouter } from './pages/main.router';
 
 /* Core CSS required for Ionic components to work properly */
 /* Basic CSS for apps built with Ionic */
@@ -23,14 +23,14 @@ import { RoutesMiddleware } from './pages/Routes.middleware';
 /* Theme variables */
 export const App: React.FC = () => {
   return (
-    <Container>
-      <IonApp>
-        <RoutesMiddleware />
-      </IonApp>
-    </Container>
+    <IonApp>
+      <GlobalStyles>
+        <MainRouter />
+      </GlobalStyles>
+    </IonApp>
   );
 };
 
-const Container = styled.div`
+const GlobalStyles = styled.div`
   font-family: "SF Pro Display";
 `;

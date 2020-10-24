@@ -1,4 +1,6 @@
+import { IonPage } from '@ionic/react';
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import logoImg from '../../assets/images/logo.png';
@@ -7,29 +9,39 @@ import { Text } from '../../components/Text';
 import { appEnv } from '../../constants/env';
 import { BackgroundContainer } from '../../shared/UI';
 
-export const AuthScreen: React.FC = () => {
+export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
+  const onRegisterClick = (e) => {
+    e.preventDefault();
+    history.push("/auth/register");
+  };
   return (
-    <BackgroundContainer>
-      <Container>
-        <CenterContainer>
-          <LogoContainer>
-            <Logo src={logoImg} alt="Instituition Logo"></Logo>
-            <LogoSubtitle>Sign in to the {appEnv.institutionType}</LogoSubtitle>
-          </LogoContainer>
+    <IonPage>
+      <BackgroundContainer>
+        <Container>
+          <CenterContainer>
+            <LogoContainer>
+              <Logo src={logoImg} alt="Instituition Logo"></Logo>
+              <LogoSubtitle>
+                Sign in to the {appEnv.institutionType}
+              </LogoSubtitle>
+            </LogoContainer>
 
-          <FormContainer>Form here</FormContainer>
+            <FormContainer>Form here</FormContainer>
 
-          <CustomButton color="light" expand="full">
-            Login
-          </CustomButton>
+            <CustomButton color="light" expand="full">
+              Login
+            </CustomButton>
 
-          <TextContainer>
-            <Text faded>Create your Account</Text>
-            <Text faded>Forgot your password?</Text>
-          </TextContainer>
-        </CenterContainer>
-      </Container>
-    </BackgroundContainer>
+            <TextContainer>
+              <Text faded onClick={onRegisterClick}>
+                Create your Account
+              </Text>
+              <Text faded>Forgot your password?</Text>
+            </TextContainer>
+          </CenterContainer>
+        </Container>
+      </BackgroundContainer>
+    </IonPage>
   );
 };
 

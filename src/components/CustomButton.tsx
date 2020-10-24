@@ -6,12 +6,28 @@ interface IProps {
   children: React.ReactElement | string;
   expand: "full" | "block" | undefined;
   color: string;
+  onClick?: (e: any) => void;
+  link?: string;
+  routerDirection?: "back" | "forward" | "none";
 }
 
-export const CustomButton: React.FC<IProps> = ({ expand, color, children }) => {
+export const CustomButton: React.FC<IProps> = ({
+  expand,
+  color,
+  children,
+  onClick,
+  link,
+  routerDirection,
+}) => {
   return (
     <Container>
-      <IonButton expand={expand} color={color}>
+      <IonButton
+        expand={expand}
+        color={color}
+        onClick={onClick}
+        routerLink={link}
+        routerDirection={routerDirection}
+      >
         {children}
       </IonButton>
     </Container>

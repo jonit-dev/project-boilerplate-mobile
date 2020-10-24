@@ -1,20 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { RippleEffect } from './RippleEffect';
+
 interface IProps {
   color?: string;
   faded?: boolean;
   children: string;
+  onClick?: (e) => void;
 }
 
 export const Text: React.FC<IProps> = ({
   color = "white",
   faded = true,
   children,
+  onClick,
 }) => {
   return (
-    <P color={color} faded={faded}>
-      {children}
+    <P color={color} faded={faded} onClick={onClick}>
+      <RippleEffect>{children}</RippleEffect>
     </P>
   );
 };
