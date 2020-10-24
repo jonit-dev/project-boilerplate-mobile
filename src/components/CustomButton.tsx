@@ -21,8 +21,8 @@ export const CustomButton: React.FC<IProps> = ({ expand, color, children }) => {
 const Container = styled.div`
   ion-button::part(native) {
     border-radius: 20px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    height: 2.5rem;
+    height: 2.7rem;
   }
 `;

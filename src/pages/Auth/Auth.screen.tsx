@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 
 import logoImg from '../../assets/images/logo.png';
 import { CustomButton } from '../../components/CustomButton';
+import { Text } from '../../components/Text';
 import { appEnv } from '../../constants/env';
 import { BackgroundContainer } from '../../shared/UI';
 
@@ -21,6 +22,11 @@ export const AuthScreen: React.FC = () => {
           <CustomButton color="light" expand="full">
             Login
           </CustomButton>
+
+          <TextContainer>
+            <Text faded>Create your Account</Text>
+            <Text faded>Forgot your password?</Text>
+          </TextContainer>
         </CenterContainer>
       </Container>
     </BackgroundContainer>
@@ -37,9 +43,8 @@ const Container = styled.div`
 `;
 
 const CenterContainer = styled.div`
-  width: 290px;
+  width: 270px;
   height: 75%;
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -66,7 +71,11 @@ const LogoSubtitle = styled.div`
 `;
 
 const FormContainer = styled.div`
-  border: 1px solid #f00 !important;
   box-sizing: border-box;
   min-height: 150px;
+`;
+
+const TextContainer = styled.div`
+  margin-top: 4rem;
+  height: 130px;
 `;
