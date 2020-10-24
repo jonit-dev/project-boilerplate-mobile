@@ -2,7 +2,7 @@ import { IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { StoreState } from '../store/reducers/index.reducer';
 import { IUser } from '../store/types/user.types';
@@ -25,9 +25,14 @@ export const RouterMiddleware: React.FC<IProps> = (props) => {
   return (
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/main" render={(props) => <MainPageRouter {...props} />} />
-        <Route path="/auth" render={(props) => <AuthRouter {...props} />} />
-        <Route exact path="/" render={onRouteRedirect} />
+        <Switch>
+          <Route
+            path="/main"
+            render={(props) => <MainPageRouter {...props} />}
+          />
+          <Route path="/auth" render={(props) => <AuthRouter {...props} />} />
+          <Route exact path="/" render={onRouteRedirect} />
+        </Switch>
       </IonRouterOutlet>
     </IonReactRouter>
   );

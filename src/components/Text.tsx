@@ -26,11 +26,14 @@ export const Text: React.FC<IProps> = ({
 interface ITextProps {
   faded: boolean;
   color: string;
+  onClick?: (e) => void;
 }
 
-const P = styled.p<ITextProps>`
+const P = styled.div<ITextProps>`
   color: ${(props) => props.color};
   opacity: ${(props) => (props.faded ? 0.5 : 1)};
   text-align: center;
   font-size: 0.9rem;
+  cursor: ${(props) => (props.onClick ? "pointer" : null)};
+  padding: 0.4rem;
 `;
