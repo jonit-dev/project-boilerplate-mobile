@@ -1,39 +1,72 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import logoImg from '../../assets/images/logo.png';
+import { CustomButton } from '../../components/CustomButton';
+import { appEnv } from '../../constants/env';
+import { BackgroundContainer } from '../../shared/UI';
 
-interface IProps {}
-
-export const AuthScreen: React.FC<IProps> = (props) => {
+export const AuthScreen: React.FC = () => {
   return (
-    <Container>
-      <LogoContainer>
-        <Logo src={logoImg} alt="Instituition Logo"></Logo>
-      </LogoContainer>
-    </Container>
+    <BackgroundContainer>
+      <Container>
+        <CenterContainer>
+          <LogoContainer>
+            <Logo src={logoImg} alt="Instituition Logo"></Logo>
+            <LogoSubtitle>Sign in to the {appEnv.institutionType}</LogoSubtitle>
+          </LogoContainer>
+
+          <FormContainer>Form here</FormContainer>
+
+          <CustomButton color="light" expand="full">
+            Login
+          </CustomButton>
+        </CenterContainer>
+      </Container>
+    </BackgroundContainer>
   );
 };
 
 const Container = styled.div`
-  background: var(--ion-color-secondary);
-  background: linear-gradient(
-    121deg,
-    var(--ion-color-secondary) 0%,
-    var(--ion-color-primary) 66%
-  );
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
+const CenterContainer = styled.div`
+  width: 290px;
+  height: 75%;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
 const Logo = styled.img`
   height: 110px;
+  flex: 100%;
+  object-fit: contain;
 `;
 
 const LogoContainer = styled.div`
-  max-width: 300px;
-  margin-top: 2rem;
+  max-height: 160px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  flex: 100%;
+`;
+
+const LogoSubtitle = styled.div`
+  font-size: 1rem;
+  color: white;
+  flex: 100%;
+`;
+
+const FormContainer = styled.div`
+  border: 1px solid #f00 !important;
+  box-sizing: border-box;
+  min-height: 150px;
 `;
