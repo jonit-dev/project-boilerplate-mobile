@@ -20,7 +20,7 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
         <Container>
           <CenterContainer>
             <LogoContainer>
-              <Logo src={logoImg} alt="Instituition Logo"></Logo>
+              <Logo src={logoImg} alt="Institution Logo"></Logo>
               <LogoSubtitle>
                 Sign in to the {appEnv.institutionType}
               </LogoSubtitle>
@@ -28,7 +28,7 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
 
             <FormContainer>Form here</FormContainer>
 
-            <CustomButton color="light" expand="full">
+            <CustomButton color="light" expand="full" link={"/main"}>
               Login
             </CustomButton>
 

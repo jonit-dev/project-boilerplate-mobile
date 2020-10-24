@@ -7,11 +7,11 @@ import { Redirect, Route } from 'react-router-dom';
 import { StoreState } from '../store/reducers/index.reducer';
 import { IUser } from '../store/types/user.types';
 import { AuthRouter } from './Auth/Auth.router';
-import { MainScreen } from './Main/Main.screen';
+import { MainPageRouter } from './Main/Main.router';
 
 interface IProps {}
 
-export const MainRouter: React.FC<IProps> = (props) => {
+export const RouterMiddleware: React.FC<IProps> = (props) => {
   // This component is responsible for deciding if the user needs to logout or if he can just bypass login and go directly to MainScreen
 
   const user = useSelector<StoreState, IUser>(
@@ -25,7 +25,7 @@ export const MainRouter: React.FC<IProps> = (props) => {
   return (
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/main" component={MainScreen} />
+        <Route path="/main" render={(props) => <MainPageRouter {...props} />} />
         <Route path="/auth" render={(props) => <AuthRouter {...props} />} />
         <Route exact path="/" render={onRouteRedirect} />
       </IonRouterOutlet>
