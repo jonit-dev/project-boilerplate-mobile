@@ -1,3 +1,4 @@
+import './assets/fonts/SFPro/stylesheet.css';
 import './theme/variables.css';
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/display.css';
@@ -12,6 +13,7 @@ import '@ionic/react/css/typography.css';
 
 import { IonApp } from '@ionic/react';
 import React from 'react';
+import styled from 'styled-components';
 
 import { RoutesMiddleware } from './pages/Routes.middleware';
 
@@ -21,8 +23,14 @@ import { RoutesMiddleware } from './pages/Routes.middleware';
 /* Theme variables */
 export const App: React.FC = () => {
   return (
-    <IonApp>
-      <RoutesMiddleware />
-    </IonApp>
+    <Container>
+      <IonApp>
+        <RoutesMiddleware />
+      </IonApp>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  font-family: "SF Pro Display";
+`;
