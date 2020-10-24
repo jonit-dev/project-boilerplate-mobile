@@ -7,6 +7,7 @@ interface IState {
 const initialState = {
   user: {
     name: null,
+    isLoggedIn: false,
   },
 };
 
