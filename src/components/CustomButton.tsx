@@ -40,5 +40,9 @@ const Container = styled.div`
     font-size: 0.8rem;
     font-weight: bold;
     height: 2.7rem;
+    text-transform: uppercase;
+    -webkit-box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.25);
   }
 `;

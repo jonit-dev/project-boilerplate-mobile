@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
-import logoImg from '../../assets/images/logo.png';
 import { CustomButton } from '../../components/CustomButton';
 import { Text } from '../../components/Text';
 import { TransparentInput } from '../../components/TransparentInput';
@@ -14,6 +13,8 @@ import { BackgroundContainer } from '../../shared/UI';
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const logoImg = require(`../../assets/images/${appEnv.institutionLogo}`);
 
   const onRegisterClick = (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
             <LogoContainer>
               <Logo src={logoImg} alt="Institution Logo"></Logo>
               <LogoSubtitle>
-                Sign in to the {appEnv.institutionType}
+                Sign in to the {appEnv.institutionName}
               </LogoSubtitle>
             </LogoContainer>
 
