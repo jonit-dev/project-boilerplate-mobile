@@ -1,4 +1,5 @@
 import './assets/fonts/SFPro/stylesheet.css';
+import './assets/styles/form-reset.css';
 import './theme/variables.css';
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/display.css';

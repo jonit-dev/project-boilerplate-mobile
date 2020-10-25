@@ -1,15 +1,20 @@
 import { IonPage } from '@ionic/react';
-import React from 'react';
+import { lockClosedOutline, mailOutline } from 'ionicons/icons';
+import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import logoImg from '../../assets/images/logo.png';
 import { CustomButton } from '../../components/CustomButton';
 import { Text } from '../../components/Text';
+import { TransparentInput } from '../../components/TransparentInput';
 import { appEnv } from '../../constants/env';
 import { BackgroundContainer } from '../../shared/UI';
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   const onRegisterClick = (e) => {
     e.preventDefault();
     history.push("/auth/register");
@@ -26,7 +31,20 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
               </LogoSubtitle>
             </LogoContainer>
 
-            <FormContainer>Form here</FormContainer>
+            <FormContainer>
+              <TransparentInput
+                icon={mailOutline}
+                type="email"
+                placeholder={"Your e-mail"}
+                onChange={(newValue) => setEmail(newValue)}
+              />
+              <TransparentInput
+                icon={lockClosedOutline}
+                type="text"
+                placeholder={"Your password"}
+                onChange={(newValue) => setPassword(newValue)}
+              />
+            </FormContainer>
 
             <CustomButton color="light" expand="full" link={"/main"}>
               Login
@@ -85,6 +103,9 @@ const LogoSubtitle = styled.div`
 const FormContainer = styled.div`
   box-sizing: border-box;
   min-height: 150px;
+  margin: 0 auto;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
 `;
 
 const TextContainer = styled.div`

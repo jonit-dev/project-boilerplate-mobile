@@ -7,7 +7,7 @@ interface IProps extends RouteComponentProps {}
 
 export const RegisterScreen: React.FC<IProps> = (props) => {
   return (
-    <InternalPage title={"Register"} authRequired={true} {...props}>
+    <InternalPage title={"Register"} authRequired={false} {...props}>
       <p>This is the register page</p>
     </InternalPage>
   );
