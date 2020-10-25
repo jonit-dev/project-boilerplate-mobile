@@ -19,6 +19,12 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
     e.preventDefault();
     history.push("/auth/register");
   };
+
+  const onLogin = () => {
+    console.log("Logging in user...");
+    console.log(email, password);
+  };
+
   return (
     <IonPage>
       <BackgroundContainer>
@@ -40,13 +46,13 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
               />
               <TransparentInput
                 icon={lockClosedOutline}
-                type="text"
+                type="password"
                 placeholder={"Your password"}
                 onChange={(newValue) => setPassword(newValue)}
               />
             </FormContainer>
 
-            <CustomButton color="light" expand="full" link={"/main"}>
+            <CustomButton color="light" expand="full" onClick={onLogin}>
               Login
             </CustomButton>
 
