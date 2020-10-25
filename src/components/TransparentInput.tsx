@@ -49,7 +49,7 @@ const Container = styled.div<IContainerProps>`
   margin-bottom: 1.8rem;
 
   input {
-    border-bottom: 2px solid ${(props) => props.color};
+    border-bottom: 1px solid ${(props) => props.color};
     padding-left: 2rem;
     padding-bottom: 0.7rem;
     color: ${(props) => props.color};
