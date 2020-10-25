@@ -1,6 +1,7 @@
 import { IonPage } from '@ionic/react';
 import { lockClosedOutline, mailOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
@@ -8,7 +9,10 @@ import { CustomButton } from '../../components/CustomButton';
 import { Text } from '../../components/Text';
 import { TransparentInput } from '../../components/TransparentInput';
 import { appEnv } from '../../constants/env';
+import { TranslationHelper } from '../../libs/TranslationHelper';
 import { BackgroundContainer } from '../../shared/UI';
+import { toggleLoading } from '../../store/actions/loading.action';
+import { AuthTranslationKeys, Entities, GlobalTranslationKeys } from '../../types/translation.types';
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
@@ -16,12 +20,24 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
 
   const logoImg = require(`../../assets/images/${appEnv.institutionLogo}`);
 
+  const dispatch = useDispatch();
+
   const onRegisterClick = (e) => {
     e.preventDefault();
     history.push("/auth/register");
   };
 
-  const onLogin = () => {
+  const onLogin = async () => {
+    dispatch(
+      toggleLoading(
+        true,
+        TranslationHelper.get(
+          Entities.Global,
+          GlobalTranslationKeys.WAIT_MESSAGE
+        )
+      )
+    );
+
     console.log("Logging in user...");
     console.log(email, password);
   };
@@ -33,35 +49,47 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
           <CenterContainer>
             <LogoContainer>
               <Logo src={logoImg} alt="Institution Logo"></Logo>
-              <LogoSubtitle>
-                Sign in to the {appEnv.institutionName}
-              </LogoSubtitle>
+              <LogoSubtitle>{appEnv.institutionName}</LogoSubtitle>
             </LogoContainer>
 
             <FormContainer>
               <TransparentInput
                 icon={mailOutline}
                 type="email"
-                placeholder={"Your e-mail"}
+                placeholder={TranslationHelper.get(
+                  Entities.Auth,
+                  AuthTranslationKeys.FORM_INPUT_EMAIL_PLACEHOLDER
+                )}
                 onChange={(newValue) => setEmail(newValue)}
               />
               <TransparentInput
                 icon={lockClosedOutline}
                 type="password"
-                placeholder={"Your password"}
+                placeholder={TranslationHelper.get(
+                  Entities.Auth,
+                  AuthTranslationKeys.FORM_INPUT_PASSWORD_PLACEHOLDER
+                )}
                 onChange={(newValue) => setPassword(newValue)}
               />
             </FormContainer>
 
             <CustomButton color="light" expand="full" onClick={onLogin}>
-              Login
+              {TranslationHelper.get(Entities.Auth, AuthTranslationKeys.LOGIN)}
             </CustomButton>
 
             <TextContainer>
               <Text faded onClick={onRegisterClick}>
-                Create your Account
+                {TranslationHelper.get(
+                  Entities.Auth,
+                  AuthTranslationKeys.CREATE_YOUR_ACCOUNT
+                )}
               </Text>
-              <Text faded>Forgot your password?</Text>
+              <Text faded>
+                {TranslationHelper.get(
+                  Entities.Auth,
+                  AuthTranslationKeys.FORGOT_PASSWORD
+                )}
+              </Text>
             </TextContainer>
           </CenterContainer>
         </Container>
