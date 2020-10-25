@@ -8,6 +8,7 @@ import { App } from './App';
 import { rootReducer } from './store/reducers/index.reducer';
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }

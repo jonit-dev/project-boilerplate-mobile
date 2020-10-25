@@ -3,7 +3,7 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { apiAxios } from '../constants/axios';
 
 export class APIHelper {
-  private static async request<T>(
+  public static async request<T>(
     instance: AxiosInstance = apiAxios,
     method: AxiosRequestConfig["method"],
     url: string,

@@ -47,7 +47,21 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "no-unused-vars": "warn"
+      "semi": "error",
+      "no-unused-vars": "warn",
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "interface",
+          "format": [
+            "PascalCase"
+          ],
+          "custom": {
+            "regex": "^I[A-Z]",
+            "match": true
+          }
+        }
+      ]
     }
   },
   "browserslist": {

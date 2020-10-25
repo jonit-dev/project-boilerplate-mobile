@@ -8,10 +8,10 @@ export enum UserActionTypes {
 }
 
 // Dispatch actions
-export interface ActionUserFetch {
+export interface IActionUserFetch {
   type: UserActionTypes.fetch;
   payload: IUser;
 }
 
 // this is used inside our reducer
-export type ActionUser = ActionUserFetch;
+export type ActionUser = IActionUserFetch;
