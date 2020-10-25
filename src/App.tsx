@@ -16,6 +16,7 @@ import { IonApp } from '@ionic/react';
 import React from 'react';
 import styled from 'styled-components';
 
+import { ShowLoading } from './components/ShowLoading';
 import { RouterMiddleware } from './pages/router.middleware';
 
 /* Core CSS required for Ionic components to work properly */
@@ -24,11 +25,12 @@ import { RouterMiddleware } from './pages/router.middleware';
 /* Theme variables */
 export const App: React.FC = () => {
   return (
-    <GlobalStyles>
-      <IonApp>
+    <IonApp>
+      <GlobalStyles>
+        <ShowLoading />
         <RouterMiddleware />
-      </IonApp>
-    </GlobalStyles>
+      </GlobalStyles>
+    </IonApp>
   );
 };
 
