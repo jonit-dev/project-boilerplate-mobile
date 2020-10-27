@@ -1,5 +1,6 @@
+import { Entities, GlobalTranslationKeys } from '@little-sentinel/shared';
+
 import { TranslationHelper } from '../../libs/TranslationHelper';
-import { Entities, GlobalTranslationKeys } from '../../types/translation.types';
 import { IActionLoadingShow, LoadingActionTypes } from '../types/loading.types';
 
 export const toggleLoading = (

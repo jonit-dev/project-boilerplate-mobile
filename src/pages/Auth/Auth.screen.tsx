@@ -1,18 +1,18 @@
 import { IonPage } from '@ionic/react';
+import { AuthTranslationKeys, Entities, GlobalTranslationKeys } from '@little-sentinel/shared';
 import { lockClosedOutline, mailOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
+import { BackgroundContainer } from '../../common/UI';
 import { CustomButton } from '../../components/CustomButton';
 import { Text } from '../../components/Text';
 import { TransparentInput } from '../../components/TransparentInput';
 import { appEnv } from '../../constants/env';
 import { TranslationHelper } from '../../libs/TranslationHelper';
-import { BackgroundContainer } from '../../shared/UI';
 import { toggleLoading } from '../../store/actions/loading.action';
-import { AuthTranslationKeys, Entities, GlobalTranslationKeys } from '../../types/translation.types';
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
