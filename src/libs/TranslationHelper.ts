@@ -14,7 +14,7 @@ export class TranslationHelper {
   ) {
     const envLang = appEnv.language!;
 
-    const jsonFile = require(`../../node_modules/@little-sentinel/shared/translations/${entity}.lang.json`);
+    const jsonFile = require(`../../node_modules/@little-sentinel/shared/src/translations/${entity}.lang.json`);
 
     let translatedString: string = jsonFile[key][envLang];
 

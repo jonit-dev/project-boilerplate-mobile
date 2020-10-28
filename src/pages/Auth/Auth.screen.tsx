@@ -33,7 +33,7 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
         true,
         TranslationHelper.get(
           Entities.Global,
-          GlobalTranslationKeys.WAIT_MESSAGE
+          GlobalTranslationKeys.WaitMessage
         )
       )
     );
@@ -58,7 +58,7 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
                 type="email"
                 placeholder={TranslationHelper.get(
                   Entities.Auth,
-                  AuthTranslationKeys.FORM_INPUT_EMAIL_PLACEHOLDER
+                  AuthTranslationKeys.FormInputEmailPlaceholder
                 )}
                 onChange={(newValue) => setEmail(newValue)}
               />
@@ -67,27 +67,27 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
                 type="password"
                 placeholder={TranslationHelper.get(
                   Entities.Auth,
-                  AuthTranslationKeys.FORM_INPUT_PASSWORD_PLACEHOLDER
+                  AuthTranslationKeys.FormInputPasswordPlaceholder
                 )}
                 onChange={(newValue) => setPassword(newValue)}
               />
             </FormContainer>
 
             <CustomButton color="light" expand="full" onClick={onLogin}>
-              {TranslationHelper.get(Entities.Auth, AuthTranslationKeys.LOGIN)}
+              {TranslationHelper.get(Entities.Auth, AuthTranslationKeys.Login)}
             </CustomButton>
 
             <TextContainer>
               <Text faded onClick={onRegisterClick}>
                 {TranslationHelper.get(
                   Entities.Auth,
-                  AuthTranslationKeys.CREATE_YOUR_ACCOUNT
+                  AuthTranslationKeys.CreateYourAccount
                 )}
               </Text>
               <Text faded>
                 {TranslationHelper.get(
                   Entities.Auth,
-                  AuthTranslationKeys.FORGOT_PASSWORD
+                  AuthTranslationKeys.ForgotPassword
                 )}
               </Text>
             </TextContainer>

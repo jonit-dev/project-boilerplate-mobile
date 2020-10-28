@@ -10,7 +10,7 @@ export const toggleLoading = (
   if (!message) {
     message = TranslationHelper.get(
       Entities.Global,
-      GlobalTranslationKeys.WAIT_MESSAGE
+      GlobalTranslationKeys.WaitMessage
     );
   }
 
