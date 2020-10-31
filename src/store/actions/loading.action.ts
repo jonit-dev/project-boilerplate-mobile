@@ -1,12 +1,12 @@
 import { Entities, GlobalTranslationKeys } from '@little-sentinel/shared';
 
 import { TranslationHelper } from '../../libs/TranslationHelper';
-import { IActionLoadingShow, LoadingActionTypes } from '../types/loading.types';
+import { IDispatchLoadingShow, LoadingActionTypes } from '../types/loading.types';
 
 export const toggleLoading = (
   isActive: boolean,
   message: string | null = null
-): IActionLoadingShow => {
+): IDispatchLoadingShow => {
   if (!message) {
     message = TranslationHelper.get(
       Entities.Global,

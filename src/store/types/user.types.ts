@@ -4,14 +4,14 @@ export interface IUser {
 }
 
 export enum UserActionTypes {
-  fetch,
+  fetch = "fetch",
 }
 
 // Dispatch actions
-export interface IActionUserFetch {
+export interface IDispatchUserFetch {
   type: UserActionTypes.fetch;
   payload: IUser;
 }
 
 // this is used inside our reducer
-export type ActionUser = IActionUserFetch;
+export type UserAction = IDispatchUserFetch;

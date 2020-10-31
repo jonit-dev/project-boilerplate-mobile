@@ -1,14 +1,14 @@
-export interface ILoadingData {
+export interface ILoading {
   isActive: boolean;
   message: string | null;
 }
 
 export enum LoadingActionTypes {
-  showLoading,
-  clearLoading,
+  showLoading = "showLoading",
+  clearLoading = "clearLoading",
 }
 
-export interface IActionLoadingShow {
+export interface IDispatchLoadingShow {
   type: LoadingActionTypes.showLoading;
   payload: {
     isActive: boolean;
@@ -16,4 +16,4 @@ export interface IActionLoadingShow {
   };
 }
 
-export type ActionLoading = IActionLoadingShow;
+export type LoadingAction = IDispatchLoadingShow;

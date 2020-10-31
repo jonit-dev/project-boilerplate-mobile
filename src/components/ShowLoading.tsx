@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { toggleLoading } from '../store/actions/loading.action';
 import { StoreState } from '../store/reducers/index.reducer';
-import { ILoadingData } from '../store/types/loading.types';
+import { ILoading } from '../store/types/loading.types';
 
 export const ShowLoading: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { isActive, message } = useSelector<StoreState, ILoadingData>(
-    (state) => state.loadingReducer
+  const { isActive, message } = useSelector<StoreState, ILoading>(
+    (state) => state.uiReducer.loading
   );
 
   return (

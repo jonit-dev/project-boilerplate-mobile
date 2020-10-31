@@ -1,19 +1,21 @@
-import { ActionUser, IUser, UserActionTypes } from '../types/user.types';
+import { Reducer } from 'redux';
 
-interface IState {
+import { IUser, UserAction, UserActionTypes } from '../types/user.types';
+
+export interface IUserReducer {
   user: IUser;
 }
 
-const initialState = {
+const initialState: IUserReducer = {
   user: {
     name: null,
     isLoggedIn: false,
   },
 };
 
-export const userReducer = (
-  state: IState = initialState,
-  action: ActionUser
+export const userReducer: Reducer<IUserReducer, UserAction> = (
+  state = initialState,
+  action
 ) => {
   switch (action.type) {
     case UserActionTypes.fetch:
