@@ -12,6 +12,7 @@ import { Text } from '../../components/Text';
 import { TransparentInput } from '../../components/TransparentInput';
 import { appEnv } from '../../constants/env';
 import { TranslationHelper } from '../../libs/TranslationHelper';
+import { showAlert } from '../../store/actions/alert.action';
 import { toggleLoading } from '../../store/actions/loading.action';
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
@@ -24,7 +25,10 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
 
   const onRegisterClick = (e) => {
     e.preventDefault();
-    history.push("/auth/register");
+
+    dispatch(showAlert("Test Alert", "this is a test alert"));
+
+    // history.push("/auth/register");
   };
 
   const onLogin = async () => {

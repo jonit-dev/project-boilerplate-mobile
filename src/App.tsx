@@ -16,6 +16,7 @@ import { IonApp } from '@ionic/react';
 import React from 'react';
 import styled from 'styled-components';
 
+import { Alert } from './components/Alert';
 import { ShowLoading } from './components/ShowLoading';
 import { RouterMiddleware } from './pages/router.middleware';
 
@@ -27,6 +28,7 @@ export const App: React.FC = () => {
   return (
     <IonApp>
       <GlobalStyles>
+        <Alert />
         <ShowLoading />
         <RouterMiddleware />
       </GlobalStyles>
