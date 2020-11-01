@@ -10,9 +10,7 @@ import { IUser } from '../store/types/user.types';
 import { AuthRouter } from './Auth/Auth.router';
 import { MainPageRouter } from './Main/Main.router';
 
-interface IProps {}
-
-export const RouterMiddleware: React.FC<IProps> = (props) => {
+export const RouterMiddleware: React.FC = () => {
   // This component is responsible for deciding if the user needs to logout or if he can just bypass login and go directly to MainScreen
 
   const user = useSelector<StoreState, IUser>(
@@ -22,7 +20,7 @@ export const RouterMiddleware: React.FC<IProps> = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("refreshing user info");
+    console.log("Refreshing user info");
 
     dispatch(userInfoRefresh());
   }, [dispatch]);

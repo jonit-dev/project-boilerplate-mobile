@@ -46,6 +46,11 @@ export const userReducer: Reducer<IUserReducer, UserAction> = (
           ...action.payload,
         },
       };
+    case UserActionTypes.clear:
+      return {
+        ...state,
+        user: initialState.user,
+      };
     default:
       return state;
   }

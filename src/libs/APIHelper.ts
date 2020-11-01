@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import { apiAxios } from '../constants/axios';
+import { apiAxios } from '../constants/axios.constants';
 import { store } from '../store/persist.store';
 
 export class APIHelper {

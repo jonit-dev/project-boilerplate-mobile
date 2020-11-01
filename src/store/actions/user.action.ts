@@ -5,12 +5,19 @@ import { APIHelper } from '../../libs/APIHelper';
 import { AlertActionTypes, IAlert, IDispatchAlertShow } from '../types/alert.types';
 import { IAPIError } from '../types/api.types';
 import {
+  IDispatchUserClear,
   IDispatchUserInfo,
   IDispatchUserLogin,
   IUserAccessToken,
   IUserCredentials,
   UserActionTypes,
 } from '../types/user.types';
+
+export const userClear = (): IDispatchUserClear => {
+  return {
+    type: UserActionTypes.clear,
+  };
+};
 
 export const userInfoRefresh = () => async (
   dispatch: Dispatch<IDispatchUserInfo>
@@ -58,12 +65,19 @@ export const userLogin = (credentials: IUserCredentials) => async (
   } catch (error) {
     const errorPayload = error.response.data as IAPIError;
 
+    let errorMessage;
+    if (Array.isArray(errorPayload.message)) {
+      errorMessage = errorPayload.message
+        .map((m) => `- ${TextHelper.capitalizeFirstLetter(m)}`)
+        .join("\n");
+    } else {
+      errorMessage = errorPayload.message;
+    }
+
     const alert: IAlert = {
       isOpen: true,
       title: "Oops!",
-      message: errorPayload.message
-        .map((m) => `- ${TextHelper.capitalizeFirstLetter(m)}`)
-        .join("\n"),
+      message: errorMessage,
     };
 
     dispatch({

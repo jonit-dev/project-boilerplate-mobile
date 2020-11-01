@@ -19,6 +19,7 @@ export enum UserActionTypes {
   fetch = "fetch",
   login = "login",
   refreshInfo = "refreshInfo",
+  clear = "clear",
 }
 
 // Dispatch actions
@@ -37,8 +38,13 @@ export interface IDispatchUserLogin {
   payload: IUserAccessToken;
 }
 
+export interface IDispatchUserClear {
+  type: UserActionTypes.clear;
+}
+
 // this is used inside our reducer
 export type UserAction =
   | IDispatchUserFetch
   | IDispatchUserLogin
-  | IDispatchUserInfo;
+  | IDispatchUserInfo
+  | IDispatchUserClear;
