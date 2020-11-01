@@ -1,10 +1,40 @@
-import { TextHelper } from '@little-sentinel/shared';
+import { IUserEntity, TextHelper } from '@little-sentinel/shared';
 import { Dispatch } from 'react';
 
 import { APIHelper } from '../../libs/APIHelper';
 import { AlertActionTypes, IAlert, IDispatchAlertShow } from '../types/alert.types';
 import { IAPIError } from '../types/api.types';
-import { IDispatchUserLogin, IUserAccessToken, IUserCredentials, UserActionTypes } from '../types/user.types';
+import {
+  IDispatchUserInfo,
+  IDispatchUserLogin,
+  IUserAccessToken,
+  IUserCredentials,
+  UserActionTypes,
+} from '../types/user.types';
+
+export const userInfoRefresh = () => async (
+  dispatch: Dispatch<IDispatchUserInfo>
+) => {
+  try {
+    const response = await APIHelper.apiRequest<IUserEntity | IAPIError>(
+      "GET",
+      "/users/self"
+    );
+
+    const successResponse = response.data as IUserEntity;
+
+    console.log(successResponse);
+
+    dispatch({
+      type: UserActionTypes.refreshInfo,
+      payload: successResponse,
+    });
+  } catch (error) {
+    const errorResponse = error.response as IAPIError;
+
+    console.log(errorResponse);
+  }
+};
 
 export const userLogin = (credentials: IUserCredentials) => async (
   dispatch: Dispatch<IDispatchUserLogin | IDispatchAlertShow>
@@ -13,17 +43,18 @@ export const userLogin = (credentials: IUserCredentials) => async (
     const response = await APIHelper.apiRequest<IUserAccessToken | IAPIError>(
       "POST",
       "/auth/signin",
-      credentials
+      credentials,
+      false
     );
 
     const successPayload = response.data as IUserAccessToken;
+
+    console.log("Login success!");
 
     dispatch({
       type: UserActionTypes.login,
       payload: successPayload,
     });
-
-    console.log(successPayload);
   } catch (error) {
     const errorPayload = error.response.data as IAPIError;
 

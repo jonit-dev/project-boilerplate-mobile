@@ -80,7 +80,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
-    "@little-sentinel/shared": "^1.0.53",
+    "@little-sentinel/shared": "^1.0.56",
     "husky": "^4.3.0",
     "redux-persist": "^6.0.0"
   },

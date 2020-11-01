@@ -1,9 +1,10 @@
 import { IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
+import { userInfoRefresh } from '../store/actions/user.action';
 import { StoreState } from '../store/reducers/index.reducer';
 import { IUser } from '../store/types/user.types';
 import { AuthRouter } from './Auth/Auth.router';
@@ -17,6 +18,14 @@ export const RouterMiddleware: React.FC<IProps> = (props) => {
   const user = useSelector<StoreState, IUser>(
     ({ userReducer }) => userReducer.user
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("refreshing user info");
+
+    dispatch(userInfoRefresh());
+  }, [dispatch]);
 
   const onRouteRedirect = () => (
     <Redirect to={user.isLoggedIn ? "/main" : "/auth"} />

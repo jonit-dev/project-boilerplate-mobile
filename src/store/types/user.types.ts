@@ -1,4 +1,6 @@
-export interface IUser {
+import { IUserEntity } from '@little-sentinel/shared';
+
+export interface IUser extends IUserEntity {
   name: string | null;
   isLoggedIn: boolean;
   token: string | null;
@@ -16,6 +18,7 @@ export interface IUserAccessToken {
 export enum UserActionTypes {
   fetch = "fetch",
   login = "login",
+  refreshInfo = "refreshInfo",
 }
 
 // Dispatch actions
@@ -24,10 +27,18 @@ export interface IDispatchUserFetch {
   payload: IUser;
 }
 
+export interface IDispatchUserInfo {
+  type: UserActionTypes.refreshInfo;
+  payload: IUserEntity;
+}
+
 export interface IDispatchUserLogin {
   type: UserActionTypes.login;
   payload: IUserAccessToken;
 }
 
 // this is used inside our reducer
-export type UserAction = IDispatchUserFetch | IDispatchUserLogin;
+export type UserAction =
+  | IDispatchUserFetch
+  | IDispatchUserLogin
+  | IDispatchUserInfo;
