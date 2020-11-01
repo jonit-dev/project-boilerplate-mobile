@@ -81,7 +81,8 @@
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
     "@little-sentinel/shared": "^1.0.53",
-    "husky": "^4.3.0"
+    "husky": "^4.3.0",
+    "redux-persist": "^6.0.0"
   },
   "description": "An Ionic project"
 }

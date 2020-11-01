@@ -4,7 +4,7 @@ import { Dispatch } from 'react';
 import { APIHelper } from '../../libs/APIHelper';
 import { AlertActionTypes, IAlert, IDispatchAlertShow } from '../types/alert.types';
 import { IAPIError } from '../types/api.types';
-import { IDispatchUserLogin, IUserAccessToken, IUserCredentials } from '../types/user.types';
+import { IDispatchUserLogin, IUserAccessToken, IUserCredentials, UserActionTypes } from '../types/user.types';
 
 export const userLogin = (credentials: IUserCredentials) => async (
   dispatch: Dispatch<IDispatchUserLogin | IDispatchAlertShow>
@@ -17,6 +17,12 @@ export const userLogin = (credentials: IUserCredentials) => async (
     );
 
     const successPayload = response.data as IUserAccessToken;
+
+    dispatch({
+      type: UserActionTypes.login,
+      payload: successPayload,
+    });
+
     console.log(successPayload);
   } catch (error) {
     const errorPayload = error.response.data as IAPIError;

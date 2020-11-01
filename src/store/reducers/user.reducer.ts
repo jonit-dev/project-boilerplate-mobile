@@ -29,6 +29,7 @@ export const userReducer: Reducer<IUserReducer, UserAction> = (
         ...state,
         user: {
           ...state.user,
+          isLoggedIn: true,
           token: accessToken,
         },
       };
