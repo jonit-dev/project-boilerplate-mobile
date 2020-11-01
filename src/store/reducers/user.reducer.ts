@@ -10,6 +10,7 @@ const initialState: IUserReducer = {
   user: {
     name: null,
     isLoggedIn: false,
+    token: null,
   },
 };
 
@@ -20,6 +21,17 @@ export const userReducer: Reducer<IUserReducer, UserAction> = (
   switch (action.type) {
     case UserActionTypes.fetch:
       return { ...state, user: action.payload };
+
+    case UserActionTypes.login:
+      const { accessToken } = action.payload;
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          token: accessToken,
+        },
+      };
     default:
       return state;
   }

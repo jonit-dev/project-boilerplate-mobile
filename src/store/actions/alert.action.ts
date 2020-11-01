@@ -3,8 +3,8 @@ import { AlertActionTypes, IAlert, IDispatchAlertClear, IDispatchAlertShow } fro
 export const showAlert = (
   title: string,
   message: string,
+  buttons: string[] = ["Ok"],
   subtitle?: string,
-  buttons?: string[],
   onDidDismiss?: () => void
 ): IDispatchAlertShow => {
   const alert: IAlert = {

@@ -15,8 +15,8 @@ const initialState: IUIReducer = {
   },
   alert: {
     isOpen: false,
-    title: "Alert",
-    message: "This is an alert",
+    title: "",
+    message: "",
   },
 };
 

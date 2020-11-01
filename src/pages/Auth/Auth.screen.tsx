@@ -14,6 +14,8 @@ import { appEnv } from '../../constants/env';
 import { TranslationHelper } from '../../libs/TranslationHelper';
 import { showAlert } from '../../store/actions/alert.action';
 import { toggleLoading } from '../../store/actions/loading.action';
+import { userLogin } from '../../store/actions/user.action';
+import { IUserCredentials } from '../../store/types/user.types';
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
@@ -32,7 +34,17 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   };
 
   const onLogin = async () => {
-    dispatch(
+    // Basic validation ========================================
+
+    if (!email || !password) {
+      return dispatch(
+        showAlert("Error", "Please fill your e-mail or password to login!")
+      );
+    }
+
+    // Login ========================================
+
+    await dispatch(
       toggleLoading(
         true,
         TranslationHelper.get(
@@ -42,8 +54,16 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
       )
     );
 
+    const credentials: IUserCredentials = {
+      email,
+      password,
+    };
+
+    await dispatch(userLogin(credentials));
+
+    await dispatch(toggleLoading(false));
+
     console.log("Logging in user...");
-    console.log(email, password);
   };
 
   return (
