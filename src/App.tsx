@@ -20,7 +20,7 @@ import styled from 'styled-components';
 
 import { Alert } from './components/Alert';
 import { ShowLoading } from './components/ShowLoading';
-import { RouterMiddleware } from './pages/router.middleware';
+import { RouterMiddleware } from './pages/routing/router.middleware';
 import { persistor, store } from './store/persist.store';
 
 /* Core CSS required for Ionic components to work properly */

@@ -28,9 +28,7 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const onRegisterClick = (e) => {
     e.preventDefault();
 
-    dispatch(showAlert("Test Alert", "this is a test alert"));
-
-    // history.push("/auth/register");
+    history.push("/auth/register");
   };
 
   const onLogin = async () => {
