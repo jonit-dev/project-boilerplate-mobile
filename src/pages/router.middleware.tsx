@@ -20,10 +20,12 @@ export const RouterMiddleware: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Refreshing user info");
-
-    dispatch(userInfoRefresh());
-  }, [dispatch]);
+    // IF we have an user token to actually refresh some info from...
+    if (user.token) {
+      console.log("Refreshing user info");
+      dispatch(userInfoRefresh());
+    }
+  }, [dispatch, user.token]);
 
   const onRouteRedirect = () => (
     <Redirect to={user.isLoggedIn ? "/main" : "/auth"} />

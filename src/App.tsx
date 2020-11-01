@@ -27,6 +27,7 @@ import { persistor, store } from './store/persist.store';
 /* Basic CSS for apps built with Ionic */
 /* Optional CSS utils that can be commented out */
 /* Theme variables */
+
 export const App: React.FC = () => {
   return (
     <Provider store={store}>

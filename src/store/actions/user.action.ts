@@ -2,6 +2,7 @@ import { IUserEntity, TextHelper } from '@little-sentinel/shared';
 import { Dispatch } from 'react';
 
 import { APIHelper } from '../../libs/APIHelper';
+import { RoutingHelper } from '../../libs/RoutingHelper';
 import { AlertActionTypes, IAlert, IDispatchAlertShow } from '../types/alert.types';
 import { IAPIError } from '../types/api.types';
 import {
@@ -58,10 +59,12 @@ export const userLogin = (credentials: IUserCredentials) => async (
 
     console.log("Login success!");
 
-    dispatch({
+    await dispatch({
       type: UserActionTypes.login,
       payload: successPayload,
     });
+
+    RoutingHelper.redirect("/main");
   } catch (error) {
     const errorPayload = error.response.data as IAPIError;
 
