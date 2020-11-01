@@ -54,7 +54,7 @@ apiAxios.interceptors.response.use(
       store.dispatch(userClear());
 
       if (!window.location.href.includes("auth")) {
-        window.location.href = `${appEnv.appUrl!}/auth`;
+        RoutingHelper.redirect("/auth");
       }
     }
 

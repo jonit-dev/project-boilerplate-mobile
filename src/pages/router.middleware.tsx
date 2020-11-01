@@ -8,6 +8,7 @@ import { userInfoRefresh } from '../store/actions/user.action';
 import { StoreState } from '../store/reducers/index.reducer';
 import { IUser } from '../store/types/user.types';
 import { AuthRouter } from './Auth/Auth.router';
+import history from './history';
 import { MainPageRouter } from './Main/Main.router';
 
 export const RouterMiddleware: React.FC = () => {
@@ -32,7 +33,7 @@ export const RouterMiddleware: React.FC = () => {
   );
 
   return (
-    <IonReactRouter>
+    <IonReactRouter history={history}>
       <IonRouterOutlet>
         <Switch>
           <Route

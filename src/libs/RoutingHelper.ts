@@ -1,7 +1,7 @@
-import { appEnv } from '../constants/env';
+import history from '../pages/history';
 
 export class RoutingHelper {
   public static redirect(route: string) {
-    window.location.href = `${appEnv.appUrl}${route}`;
+    history.push(route);
   }
 }

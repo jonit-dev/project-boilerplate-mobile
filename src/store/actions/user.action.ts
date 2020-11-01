@@ -13,6 +13,7 @@ import {
   IUserCredentials,
   UserActionTypes,
 } from '../types/user.types';
+import { showAlert } from './alert.action';
 
 export const userClear = (): IDispatchUserClear => {
   return {
@@ -45,7 +46,9 @@ export const userInfoRefresh = () => async (
 };
 
 export const userLogin = (credentials: IUserCredentials) => async (
-  dispatch: Dispatch<IDispatchUserLogin | IDispatchAlertShow>
+  dispatch: Dispatch<
+    IDispatchUserLogin | IDispatchAlertShow | IDispatchUserClear
+  >
 ) => {
   try {
     const response = await APIHelper.apiRequest<IUserAccessToken | IAPIError>(
@@ -66,6 +69,23 @@ export const userLogin = (credentials: IUserCredentials) => async (
 
     RoutingHelper.redirect("/main");
   } catch (error) {
+    if (!error.response) {
+      //Clear user info and force a logout by redirecting him to auth
+      dispatch({
+        type: UserActionTypes.clear,
+      });
+
+      if (!window.location.href.includes("auth")) {
+        RoutingHelper.redirect("/auth");
+      }
+      return dispatch(
+        showAlert(
+          "Oops!",
+          "Couldn't connect to the server. Please, check your internet connection!"
+        )
+      );
+    }
+
     const errorPayload = error.response.data as IAPIError;
 
     let errorMessage;
