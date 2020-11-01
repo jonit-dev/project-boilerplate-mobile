@@ -1,6 +1,9 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage } from '@ionic/react';
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { CustomHeader } from './CustomHeader';
 
 interface IProps extends RouteComponentProps {
   title: string;
@@ -11,14 +14,18 @@ export const InternalPage: React.FC<IProps> = ({ title, children }) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton />
-          </IonButtons>
-          <IonTitle>{title}</IonTitle>
-        </IonToolbar>
+        <CustomHeader title={title} />
       </IonHeader>
+
       <IonContent className="ion-padding">{children}</IonContent>
     </IonPage>
   );
 };
+
+const Container = styled.div`
+  height: 100%;
+  width: 100%;
+  ion-content::part(background) {
+    background: var(--ion-color-internal-page-background);
+  }
+`;
