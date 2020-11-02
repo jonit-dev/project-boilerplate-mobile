@@ -106,12 +106,12 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
                   AuthTranslationKeys.CreateYourAccount
                 )}
               </Text>
-              <Text faded>
+              {/* <Text faded>
                 {TranslationHelper.get(
                   Entities.Auth,
                   AuthTranslationKeys.ForgotPassword
                 )}
-              </Text>
+              </Text> */}
             </TextContainer>
           </CenterContainer>
         </Container>
@@ -141,6 +141,7 @@ const Logo = styled.img`
   height: 110px;
   flex: 100%;
   object-fit: contain;
+  padding-bottom: 1rem;
 `;
 
 const LogoContainer = styled.div`

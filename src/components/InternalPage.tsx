@@ -12,19 +12,18 @@ interface IProps extends RouteComponentProps {
 
 export const InternalPage: React.FC<IProps> = ({ title, children }) => {
   return (
-    <IonPage>
-      <IonHeader>
-        <CustomHeader title={title} />
-      </IonHeader>
-
-      <IonContent className="ion-padding">{children}</IonContent>
-    </IonPage>
+    <Container>
+      <IonPage>
+        <IonHeader>
+          <CustomHeader title={title} />
+        </IonHeader>
+        <IonContent className="ion-padding">{children}</IonContent>
+      </IonPage>
+    </Container>
   );
 };
 
 const Container = styled.div`
-  height: 100%;
-  width: 100%;
   ion-content::part(background) {
     background: var(--ion-color-internal-page-background);
   }

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 
 import history from '../pages/routing/history';
+import { RippleEffect } from './RippleEffect';
 
 interface IProps {
   title: string;
@@ -29,7 +30,9 @@ export const CustomHeader: React.FC<IProps> = ({ title }) => {
       <StartSlot>
         {canShowBackButton && (
           <IconContainer onClick={onClickBackButton}>
-            <IonIcon icon={arrowBackOutline} />
+            <RippleEffect>
+              <IonIcon icon={arrowBackOutline} />
+            </RippleEffect>
           </IconContainer>
         )}
       </StartSlot>
@@ -73,6 +76,10 @@ const IconContainer = styled.div`
   position: absolute;
   top: 1rem;
   left: 1rem;
+
+  .ripple-parent {
+    height: 28px;
+  }
 
   ion-icon {
     font-size: 1.4rem;
