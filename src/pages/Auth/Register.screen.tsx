@@ -4,26 +4,28 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { FormBody, FormPanel, FormTitle } from '../../components/FormPanel';
 import { InternalPage } from '../../components/InternalPage';
+import { INewUser } from '../../store/types/user.types';
 
 interface IProps extends RouteComponentProps {}
 
 export const RegisterScreen: React.FC<IProps> = (props) => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [user, setUser] = useState<INewUser>({
+    name: "",
+    email: "",
+    password: "",
+    address: "",
+    phone: "",
+  });
 
-  const onInputChange = (e: CustomEvent, changeFunction: Function) => {
-    changeFunction(e.detail.value);
+  const onInputChange = (e: CustomEvent, key: string) => {
+    setUser({
+      ...user,
+      [key]: e.detail.value,
+    });
   };
 
   const onSubmit = () => {
-    const newUser = {
-      name,
-      email,
-      password,
-    };
-
-    console.log(newUser);
+    console.log(user);
   };
 
   return (
@@ -36,8 +38,8 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
               <IonLabel position="floating">Name</IonLabel>
               <IonInput
                 type="text"
-                value={name}
-                onIonChange={(e) => onInputChange(e, setName)}
+                value={user.name}
+                onIonChange={(e) => onInputChange(e, "name")}
               ></IonInput>
             </IonItem>
 
@@ -45,16 +47,32 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
               <IonLabel position="floating">E-mail</IonLabel>
               <IonInput
                 type="email"
-                value={email}
-                onIonChange={(e) => onInputChange(e, setEmail)}
+                value={user.email}
+                onIonChange={(e) => onInputChange(e, "email")}
               ></IonInput>
             </IonItem>
             <IonItem>
               <IonLabel position="floating">Password</IonLabel>
               <IonInput
                 type="password"
-                value={password}
-                onIonChange={(e) => onInputChange(e, setPassword)}
+                value={user.password}
+                onIonChange={(e) => onInputChange(e, "password")}
+              ></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="floating">Address</IonLabel>
+              <IonInput
+                type="text"
+                value={user.address}
+                onIonChange={(e) => onInputChange(e, "address")}
+              ></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="floating">Phone</IonLabel>
+              <IonInput
+                type="tel"
+                value={user.phone}
+                onIonChange={(e) => onInputChange(e, "phone")}
               ></IonInput>
             </IonItem>
           </IonList>

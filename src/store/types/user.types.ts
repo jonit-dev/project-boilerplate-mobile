@@ -6,6 +6,14 @@ export interface IUser extends IUserEntity {
   token: string | null;
 }
 
+export interface INewUser {
+  name: string;
+  email: string;
+  password: string;
+  address: string;
+  phone: string;
+}
+
 export interface IUserCredentials {
   email: string;
   password: string;
