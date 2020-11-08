@@ -57,7 +57,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 1rem;
+  padding-top: 1.3rem;
 `;
 
 const StartSlot = styled.div`

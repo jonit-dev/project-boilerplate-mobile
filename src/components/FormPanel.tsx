@@ -11,8 +11,7 @@ export const FormPanel: React.FC<IProps> = ({ children }) => {
 
 const Container = styled.div`
   background-color: white;
-
-  border-radius: 10px;
+  border-radius: 8px;
   -webkit-box-shadow: 2px 1px 6px 1px rgba(0, 0, 0, 0.26);
   box-shadow: 2px 1px 6px 1px rgba(0, 0, 0, 0.26);
 `;

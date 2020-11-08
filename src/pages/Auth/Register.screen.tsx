@@ -1,14 +1,20 @@
 import { IonButton, IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { FormBody, FormPanel, FormTitle } from '../../components/FormPanel';
 import { InternalPage } from '../../components/InternalPage';
+import { PhoneMask } from '../../components/Mask/PhoneMask';
+import { ValidationHelper } from '../../libs/ValidationHelper';
+import { showAlert } from '../../store/actions/alert.action';
 import { INewUser } from '../../store/types/user.types';
 
 interface IProps extends RouteComponentProps {}
 
 export const RegisterScreen: React.FC<IProps> = (props) => {
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState<INewUser>({
     name: "",
     email: "",
@@ -26,6 +32,32 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
 
   const onSubmit = () => {
     console.log(user);
+
+    // Front-end validation ========================================
+
+    const invalidFields = ValidationHelper.validateKeyValue(
+      {
+        ...user,
+      },
+      {
+        optionalFields: [],
+        fieldLabels: {
+          name: "Name",
+          email: "E-mail",
+          password: "Password",
+          address: "Address",
+          phone: "Phone",
+        },
+      }
+    );
+
+    if (invalidFields) {
+      dispatch(
+        showAlert("Oops!", `The following fields are empty: ${invalidFields}`)
+      );
+    }
+
+    console.log("Submitting user register request...");
   };
 
   return (
@@ -69,11 +101,10 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
             </IonItem>
             <IonItem>
               <IonLabel position="floating">Phone</IonLabel>
-              <IonInput
-                type="tel"
+              <PhoneMask
                 value={user.phone}
-                onIonChange={(e) => onInputChange(e, "phone")}
-              ></IonInput>
+                onChange={(e) => onInputChange(e, "phone")}
+              />
             </IonItem>
           </IonList>
           <br />
