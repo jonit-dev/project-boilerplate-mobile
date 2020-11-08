@@ -40,6 +40,8 @@ export const FloatingInput: React.FC<IProps> = ({
 };
 
 const Container = styled.div`
+  max-width: 100%;
+
   .input-group {
     position: relative;
     margin-bottom: 0.8rem;
@@ -49,9 +51,8 @@ const Container = styled.div`
     font-size: 1rem;
     color: var(--ion-color-dark);
 
-    padding: 10px 10px 10px 5px;
     display: block;
-    width: 300px;
+    width: 95%;
     border: none;
     border-bottom: 1px solid var(--ion-color-input-border);
     &:focus {

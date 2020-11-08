@@ -1,4 +1,4 @@
-import { IUserEntity, TextHelper } from '@little-sentinel/shared';
+import { HttpStatus, IUserEntity } from '@little-sentinel/shared';
 import { Dispatch } from 'react';
 
 import { APIHelper } from '../../libs/APIHelper';
@@ -9,6 +9,8 @@ import {
   IDispatchUserClear,
   IDispatchUserInfo,
   IDispatchUserLogin,
+  IDispatchUserRegister,
+  INewUser,
   IUserAccessToken,
   IUserCredentials,
   UserActionTypes,
@@ -42,6 +44,30 @@ export const userInfoRefresh = () => async (
     const errorResponse = error.response as IAPIError;
 
     console.log(errorResponse);
+  }
+};
+
+export const userRegister = (newUserPayload: INewUser) => async (
+  dispatch: Dispatch<IDispatchUserRegister | IDispatchAlertShow>
+) => {
+  try {
+    const response = await APIHelper.apiRequest(
+      "POST",
+      "/auth/signup",
+      newUserPayload,
+      false
+    );
+
+    if (response.status === HttpStatus.Created) {
+      console.log("account created, redirect user to login");
+      return;
+    }
+  } catch (error) {
+    const errorPayload = error.response.data as IAPIError;
+
+    const errorMessage = APIHelper.handleErrorMessage(errorPayload.message);
+
+    dispatch(showAlert("Oops!", errorMessage));
   }
 };
 
@@ -88,14 +114,7 @@ export const userLogin = (credentials: IUserCredentials) => async (
 
     const errorPayload = error.response.data as IAPIError;
 
-    let errorMessage;
-    if (Array.isArray(errorPayload.message)) {
-      errorMessage = errorPayload.message
-        .map((m) => `- ${TextHelper.capitalizeFirstLetter(m)}`)
-        .join("\n");
-    } else {
-      errorMessage = errorPayload.message;
-    }
+    const errorMessage = APIHelper.handleErrorMessage(errorPayload.message);
 
     const alert: IAlert = {
       isOpen: true,

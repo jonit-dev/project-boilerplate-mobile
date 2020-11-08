@@ -8,6 +8,7 @@ import { FormBody, FormPanel, FormTitle } from '../../components/FormPanel';
 import { InternalPage } from '../../components/InternalPage';
 import { ValidationHelper } from '../../libs/ValidationHelper';
 import { showAlert } from '../../store/actions/alert.action';
+import { userRegister } from '../../store/actions/user.action';
 import { INewUser } from '../../store/types/user.types';
 
 export const RegisterScreen: React.FC = () => {
@@ -55,7 +56,14 @@ export const RegisterScreen: React.FC = () => {
       );
     }
 
+    // Add +1 number prefix to phone if needed, otherwise an invalid phone number error will be throw!
+    if (!user.phone.includes("+1")) {
+      user.phone = `+1 ${user.phone}`;
+    }
+
     console.log("Submitting user register request...");
+
+    dispatch(userRegister(user));
   };
 
   return (

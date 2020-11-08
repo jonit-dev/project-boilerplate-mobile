@@ -28,6 +28,7 @@ export enum UserActionTypes {
   login = "login",
   refreshInfo = "refreshInfo",
   clear = "clear",
+  register = "register",
 }
 
 // Dispatch actions
@@ -48,6 +49,10 @@ export interface IDispatchUserLogin {
 
 export interface IDispatchUserClear {
   type: UserActionTypes.clear;
+}
+
+export interface IDispatchUserRegister {
+  type: UserActionTypes.register;
 }
 
 // this is used inside our reducer

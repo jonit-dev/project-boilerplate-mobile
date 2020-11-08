@@ -1,3 +1,4 @@
+import { TextHelper } from '@little-sentinel/shared';
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { apiAxios } from '../constants/axios.constants';
@@ -35,5 +36,21 @@ export class APIHelper {
     }
 
     return apiAxios.request<T>({ method, url, data });
+  }
+
+  /**
+   * Error messages from our API could be a string or an array of strings. This function parses it and returns the proper value
+   */
+  public static handleErrorMessage(message: string | string[]) {
+    if (Array.isArray(message)) {
+      const parsedMessage = message
+        .map((m) => `- ${TextHelper.capitalizeFirstLetter(m)}`)
+        .join("\n\n");
+
+      console.log(parsedMessage);
+      return parsedMessage;
+    } else {
+      return message;
+    }
   }
 }

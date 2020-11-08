@@ -1,4 +1,3 @@
-import { UserTypes } from '@little-sentinel/shared/dist';
 import { Reducer } from 'redux';
 
 import { IUser, UserAction, UserActionTypes } from '../types/user.types';
@@ -9,13 +8,17 @@ export interface IUserReducer {
 
 const initialState: IUserReducer = {
   user: {
-    id: 0,
-    type: UserTypes.Regular,
-    unsubscribed: false,
-    email: "",
-    name: null,
-    isLoggedIn: false,
+    id: null,
     token: null,
+    name: null,
+    address: null,
+    phone: null,
+    type: null,
+    unsubscribed: null,
+    email: null,
+    isLoggedIn: false,
+    created: null,
+    updated: null,
   },
 };
 

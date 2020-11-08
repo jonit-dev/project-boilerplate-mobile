@@ -1,3 +1,5 @@
+import '../assets/styles/alert.css';
+
 import { IonAlert } from '@ionic/react';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,7 +30,7 @@ export const Alert: React.FC<IProps> = (props) => {
         dispatch(clearAlert());
         if (alert.onDidDismiss) alert.onDidDismiss();
       }}
-      // cssClass='my-custom-class'
+      cssClass="custom-alert"
       header={alert.title}
       subHeader={alert.subtitle}
       message={alert.message}
