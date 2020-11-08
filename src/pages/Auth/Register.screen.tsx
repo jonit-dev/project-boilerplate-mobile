@@ -99,13 +99,18 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
                 onIonChange={(e) => onInputChange(e, "address")}
               ></IonInput>
             </IonItem>
-            <IonItem>
-              <IonLabel position="floating">Phone</IonLabel>
-              <PhoneMask
-                value={user.phone}
-                onChange={(e) => onInputChange(e, "phone")}
-              />
-            </IonItem>
+
+            <PhoneMask
+              type="tel"
+              label="Phone"
+              value={user.phone}
+              onChange={(e) => {
+                setUser({
+                  ...user,
+                  phone: e.target.value,
+                });
+              }}
+            />
           </IonList>
           <br />
           <IonButton expand="block" color="tertiary" onClick={onSubmit}>
