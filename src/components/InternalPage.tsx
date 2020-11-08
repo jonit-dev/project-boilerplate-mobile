@@ -1,11 +1,10 @@
 import { IonContent, IonHeader, IonPage } from '@ionic/react';
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { CustomHeader } from './CustomHeader';
 
-interface IProps extends RouteComponentProps {
+interface IProps {
   title: string;
   children: React.ReactElement;
 }

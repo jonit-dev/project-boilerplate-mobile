@@ -1,7 +1,6 @@
-import { IonButton, IonList } from '@ionic/react';
+import { IonButton } from '@ionic/react';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
 
 import { FloatingInput } from '../../components/FloatingInput';
 import { FloatingInputMask } from '../../components/FloatingInputMask';
@@ -11,9 +10,7 @@ import { ValidationHelper } from '../../libs/ValidationHelper';
 import { showAlert } from '../../store/actions/alert.action';
 import { INewUser } from '../../store/types/user.types';
 
-interface IProps extends RouteComponentProps {}
-
-export const RegisterScreen: React.FC<IProps> = (props) => {
+export const RegisterScreen: React.FC = () => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState<INewUser>({
@@ -62,47 +59,46 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
   };
 
   return (
-    <InternalPage title={"Register"} {...props}>
+    <InternalPage title={"Register"}>
       <FormPanel>
         <FormTitle>Create Your Account</FormTitle>
         <FormBody>
-          <IonList>
-            <FloatingInput
-              label="Name"
-              type="text"
-              value={user.name}
-              onChange={(e) => onInputChange(e, "name")}
-            />
+          <FloatingInput
+            label="Name"
+            type="text"
+            value={user.name}
+            onChange={(e) => onInputChange(e, "name")}
+          />
 
-            <FloatingInput
-              label="E-mail"
-              type="text"
-              value={user.email}
-              onChange={(e) => onInputChange(e, "email")}
-            />
+          <FloatingInput
+            label="E-mail"
+            type="text"
+            value={user.email}
+            onChange={(e) => onInputChange(e, "email")}
+          />
 
-            <FloatingInput
-              label="Password"
-              type="password"
-              value={user.password}
-              onChange={(e) => onInputChange(e, "password")}
-            />
+          <FloatingInput
+            label="Password"
+            type="password"
+            value={user.password}
+            onChange={(e) => onInputChange(e, "password")}
+          />
 
-            <FloatingInput
-              label="Address"
-              type="text"
-              value={user.address}
-              onChange={(e) => onInputChange(e, "address")}
-            />
+          <FloatingInput
+            label="Address"
+            type="text"
+            value={user.address}
+            onChange={(e) => onInputChange(e, "address")}
+          />
 
-            <FloatingInputMask
-              label="Phone"
-              type="tel"
-              mask={"(000) 000-0000"}
-              value={user.phone}
-              onChange={(e) => onInputChange(e, "phone")}
-            />
-          </IonList>
+          <FloatingInputMask
+            label="Phone"
+            type="tel"
+            mask={"(000) 000-0000"}
+            value={user.phone}
+            onChange={(e) => onInputChange(e, "phone")}
+          />
+
           <br />
           <IonButton expand="block" color="tertiary" onClick={onSubmit}>
             Submit
