@@ -9,7 +9,6 @@ import {
   IDispatchUserClear,
   IDispatchUserInfo,
   IDispatchUserLogin,
-  IDispatchUserRegister,
   INewUser,
   IUserAccessToken,
   IUserCredentials,
@@ -48,7 +47,7 @@ export const userInfoRefresh = () => async (
 };
 
 export const userRegister = (newUserPayload: INewUser) => async (
-  dispatch: Dispatch<IDispatchUserRegister | IDispatchAlertShow>
+  dispatch: Dispatch<IDispatchAlertShow | ReturnType<typeof userLogin>>
 ) => {
   try {
     const response = await APIHelper.apiRequest(
@@ -60,7 +59,15 @@ export const userRegister = (newUserPayload: INewUser) => async (
 
     if (response.status === HttpStatus.Created) {
       console.log("account created, redirect user to login");
-      return;
+
+      const { email, password } = newUserPayload;
+
+      const credentials: IUserCredentials = {
+        email,
+        password,
+      };
+
+      dispatch(userLogin(credentials));
     }
   } catch (error) {
     const errorPayload = error.response.data as IAPIError;
