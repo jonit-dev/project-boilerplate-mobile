@@ -16,7 +16,13 @@ export class TS {
 
     const jsonFile = require(`../../node_modules/@little-sentinel/shared/src/translations/${context}.lang.json`);
 
-    let translatedString: string = jsonFile[key][envLang];
+    let translatedString: string;
+
+    try {
+      translatedString = jsonFile[key][envLang];
+    } catch (error) {
+      translatedString = "TRANSLATION_KEY_NOT_FOUND";
+    }
 
     if (interpolationObjs) {
       for (const key of Object.keys(interpolationObjs)) {
