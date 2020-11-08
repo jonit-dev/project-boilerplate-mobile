@@ -1,6 +1,4 @@
-import { Entities, GlobalTranslationKeys } from '@little-sentinel/shared';
-
-import { TranslationHelper } from '../../libs/TranslationHelper';
+import { TS } from '../../libs/TranslationHelper';
 import { IDispatchLoadingShow, LoadingActionTypes } from '../types/loading.types';
 
 export const toggleLoading = (
@@ -8,10 +6,7 @@ export const toggleLoading = (
   message: string | null = null
 ): IDispatchLoadingShow => {
   if (!message) {
-    message = TranslationHelper.get(
-      Entities.Global,
-      GlobalTranslationKeys.WaitMessage
-    );
+    message = TS.translate("global", "waitMessage");
   }
 
   return {

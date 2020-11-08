@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { TS } from '../libs/TranslationHelper';
 import history from '../pages/routing/history';
 import { showAlert } from '../store/actions/alert.action';
 import { userInfoRefresh } from '../store/actions/user.action';
@@ -22,7 +23,12 @@ export const AuthenticatedPage: React.FC<IProps> = ({ children }) => {
     dispatch(userInfoRefresh());
 
     if (!user.isLoggedIn) {
-      dispatch(showAlert("Oops!", `Please, login before accessing this page.`));
+      dispatch(
+        showAlert(
+          TS.translate("global", "oops"),
+          `Please, login before accessing this page.`
+        )
+      );
       history.push("/auth");
     }
   }, [dispatch, user.isLoggedIn]);

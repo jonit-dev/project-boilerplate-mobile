@@ -3,6 +3,7 @@ import { Dispatch } from 'react';
 
 import { APIHelper } from '../../libs/APIHelper';
 import { RoutingHelper } from '../../libs/RoutingHelper';
+import { TS } from '../../libs/TranslationHelper';
 import { AlertActionTypes, IAlert, IDispatchAlertShow } from '../types/alert.types';
 import { IAPIError } from '../types/api.types';
 import {
@@ -74,7 +75,7 @@ export const userRegister = (newUserPayload: INewUser) => async (
 
     const errorMessage = APIHelper.handleErrorMessage(errorPayload.message);
 
-    dispatch(showAlert("Oops!", errorMessage));
+    dispatch(showAlert(TS.translate("global", "oops"), errorMessage));
   }
 };
 
@@ -113,8 +114,8 @@ export const userLogin = (credentials: IUserCredentials) => async (
       }
       return dispatch(
         showAlert(
-          "Oops!",
-          "Couldn't connect to the server. Please, check your internet connection!"
+          TS.translate("global", "oops"),
+          TS.translate("global", "connectionError")
         )
       );
     }
@@ -125,7 +126,7 @@ export const userLogin = (credentials: IUserCredentials) => async (
 
     const alert: IAlert = {
       isOpen: true,
-      title: "Oops!",
+      title: TS.translate("global", "oops"),
       message: errorMessage,
     };
 

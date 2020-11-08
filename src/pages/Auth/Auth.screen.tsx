@@ -1,5 +1,4 @@
 import { IonPage } from '@ionic/react';
-import { AuthTranslationKeys, Entities, GlobalTranslationKeys } from '@little-sentinel/shared';
 import { lockClosedOutline, mailOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -11,7 +10,7 @@ import { CustomButton } from '../../components/CustomButton';
 import { Text } from '../../components/Text';
 import { TransparentInput } from '../../components/TransparentInput';
 import { appEnv } from '../../constants/env';
-import { TranslationHelper } from '../../libs/TranslationHelper';
+import { TS } from '../../libs/TranslationHelper';
 import { showAlert } from '../../store/actions/alert.action';
 import { toggleLoading } from '../../store/actions/loading.action';
 import { userLogin } from '../../store/actions/user.action';
@@ -36,21 +35,16 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
 
     if (!email || !password) {
       return dispatch(
-        showAlert("Error", "Please fill your e-mail or password to login!")
+        showAlert(
+          TS.translate("global", "oops"),
+          TS.translate("auth", "emptyEmailPassword")
+        )
       );
     }
 
     // Login ========================================
 
-    await dispatch(
-      toggleLoading(
-        true,
-        TranslationHelper.get(
-          Entities.Global,
-          GlobalTranslationKeys.WaitMessage
-        )
-      )
-    );
+    await dispatch(toggleLoading(true, TS.translate("global", "waitMessage")));
 
     const credentials: IUserCredentials = {
       email,
@@ -78,33 +72,27 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
               <TransparentInput
                 icon={mailOutline}
                 type="email"
-                placeholder={TranslationHelper.get(
-                  Entities.Auth,
-                  AuthTranslationKeys.FormInputEmailPlaceholder
-                )}
+                placeholder={TS.translate("auth", "formInputEmailPlaceholder")}
                 onChange={(newValue) => setEmail(newValue)}
               />
               <TransparentInput
                 icon={lockClosedOutline}
                 type="password"
-                placeholder={TranslationHelper.get(
-                  Entities.Auth,
-                  AuthTranslationKeys.FormInputPasswordPlaceholder
+                placeholder={TS.translate(
+                  "auth",
+                  "formInputPasswordPlaceholder"
                 )}
                 onChange={(newValue) => setPassword(newValue)}
               />
             </FormContainer>
 
             <CustomButton color="light" expand="full" onClick={onLogin}>
-              {TranslationHelper.get(Entities.Auth, AuthTranslationKeys.Login)}
+              {TS.translate("auth", "login")}
             </CustomButton>
 
             <TextContainer>
               <Text faded onClick={onRegisterClick}>
-                {TranslationHelper.get(
-                  Entities.Auth,
-                  AuthTranslationKeys.CreateYourAccount
-                )}
+                {TS.translate("auth", "createYourAccount")}
               </Text>
               {/* <Text faded>
                 {TranslationHelper.get(

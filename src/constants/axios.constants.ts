@@ -2,6 +2,7 @@ import { HttpStatus } from '@little-sentinel/shared/dist';
 import axios from 'axios';
 
 import { RoutingHelper } from '../libs/RoutingHelper';
+import { TS } from '../libs/TranslationHelper';
 import { showAlert } from '../store/actions/alert.action';
 import { userClear } from '../store/actions/user.action';
 import { store } from '../store/persist.store';
@@ -28,8 +29,8 @@ apiAxios.interceptors.response.use(
           if (!errorResponse.message.includes("Invalid credentials")) {
             store.dispatch(
               showAlert(
-                "Please login",
-                "We couldn't authenticate your user. Please login again."
+                TS.translate("auth", "pleaseLogin"),
+                TS.translate("auth", "couldntAuthenticate")
               )
             );
             store.dispatch(userClear());
@@ -45,8 +46,8 @@ apiAxios.interceptors.response.use(
     if (!error.response) {
       store.dispatch(
         showAlert(
-          "Oops!",
-          "Couldn't connect to the server. Please, check your internet connection!"
+          TS.translate("global", "oops"),
+          TS.translate("global", "connectionError")
         )
       );
 
