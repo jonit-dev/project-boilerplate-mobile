@@ -1,11 +1,12 @@
-import { IonButton, IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
+import { IonButton, IonList } from '@ionic/react';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 
+import { FloatingInput } from '../../components/FloatingInput';
+import { FloatingInputMask } from '../../components/FloatingInputMask';
 import { FormBody, FormPanel, FormTitle } from '../../components/FormPanel';
 import { InternalPage } from '../../components/InternalPage';
-import { PhoneMask } from '../../components/Mask/PhoneMask';
 import { ValidationHelper } from '../../libs/ValidationHelper';
 import { showAlert } from '../../store/actions/alert.action';
 import { INewUser } from '../../store/types/user.types';
@@ -23,10 +24,10 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
     phone: "",
   });
 
-  const onInputChange = (e: CustomEvent, key: string) => {
+  const onInputChange = (e, key: string) => {
     setUser({
       ...user,
-      [key]: e.detail.value,
+      [key]: e.target.value,
     });
   };
 
@@ -66,50 +67,40 @@ export const RegisterScreen: React.FC<IProps> = (props) => {
         <FormTitle>Create Your Account</FormTitle>
         <FormBody>
           <IonList>
-            <IonItem>
-              <IonLabel position="floating">Name</IonLabel>
-              <IonInput
-                type="text"
-                value={user.name}
-                onIonChange={(e) => onInputChange(e, "name")}
-              ></IonInput>
-            </IonItem>
+            <FloatingInput
+              label="Name"
+              type="text"
+              value={user.name}
+              onChange={(e) => onInputChange(e, "name")}
+            />
 
-            <IonItem>
-              <IonLabel position="floating">E-mail</IonLabel>
-              <IonInput
-                type="email"
-                value={user.email}
-                onIonChange={(e) => onInputChange(e, "email")}
-              ></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">Password</IonLabel>
-              <IonInput
-                type="password"
-                value={user.password}
-                onIonChange={(e) => onInputChange(e, "password")}
-              ></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonLabel position="floating">Address</IonLabel>
-              <IonInput
-                type="text"
-                value={user.address}
-                onIonChange={(e) => onInputChange(e, "address")}
-              ></IonInput>
-            </IonItem>
+            <FloatingInput
+              label="E-mail"
+              type="text"
+              value={user.email}
+              onChange={(e) => onInputChange(e, "email")}
+            />
 
-            <PhoneMask
-              type="tel"
+            <FloatingInput
+              label="Password"
+              type="password"
+              value={user.password}
+              onChange={(e) => onInputChange(e, "password")}
+            />
+
+            <FloatingInput
+              label="Address"
+              type="text"
+              value={user.address}
+              onChange={(e) => onInputChange(e, "address")}
+            />
+
+            <FloatingInputMask
               label="Phone"
+              type="tel"
+              mask={"(000) 000-0000"}
               value={user.phone}
-              onChange={(e) => {
-                setUser({
-                  ...user,
-                  phone: e.target.value,
-                });
-              }}
+              onChange={(e) => onInputChange(e, "phone")}
             />
           </IonList>
           <br />

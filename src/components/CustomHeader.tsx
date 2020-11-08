@@ -17,8 +17,6 @@ export const CustomHeader: React.FC<IProps> = ({ title }) => {
     if (history.action === "PUSH") {
       setCanShowBackButton(true);
     }
-
-    console.log(history);
   }, []);
 
   const onClickBackButton = () => {

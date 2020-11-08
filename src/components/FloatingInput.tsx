@@ -15,13 +15,20 @@ export const FloatingInput: React.FC<IProps> = ({
   onChange,
   ...rest
 }) => {
+  if (!rest.autoComplete) rest.autoComplete = "off";
+
   return (
     <Container>
       <div className="input-group">
         {rest.children ? (
           rest.children
         ) : (
-          <input required {...rest} value={value} onChange={onChange} />
+          <input
+            {...rest}
+            required
+            value={value}
+            onChange={(e) => onChange(e)}
+          />
         )}
 
         <span className="highlight"></span>
@@ -35,11 +42,13 @@ export const FloatingInput: React.FC<IProps> = ({
 const Container = styled.div`
   .input-group {
     position: relative;
-    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
   }
 
   input {
-    font-size: 18px;
+    font-size: 1rem;
+    color: var(--ion-color-dark);
+
     padding: 10px 10px 10px 5px;
     display: block;
     width: 300px;
