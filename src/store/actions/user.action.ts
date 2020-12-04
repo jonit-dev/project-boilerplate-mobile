@@ -1,11 +1,11 @@
-import { HttpStatus, IUserEntity } from '@little-sentinel/shared';
-import { Dispatch } from 'react';
+import { HttpStatus, IUserEntity } from "@little-sentinel/shared";
+import { Dispatch } from "react";
 
-import { APIHelper } from '../../libs/APIHelper';
-import { RoutingHelper } from '../../libs/RoutingHelper';
-import { TS } from '../../libs/TranslationHelper';
-import { AlertActionTypes, IAlert, IDispatchAlertShow } from '../types/alert.types';
-import { IAPIError } from '../types/api.types';
+import { APIHelper } from "../../libs/APIHelper";
+import { RoutingHelper } from "../../libs/RoutingHelper";
+import { TS } from "../../libs/TranslationHelper";
+import { AlertActionTypes, IAlert, IDispatchAlertShow } from "../types/alert.types";
+import { IAPIError } from "../types/api.types";
 import {
   IDispatchUserClear,
   IDispatchUserInfo,
@@ -14,8 +14,8 @@ import {
   IUserAccessToken,
   IUserCredentials,
   UserActionTypes,
-} from '../types/user.types';
-import { showAlert } from './alert.action';
+} from "../types/user.types";
+import { showAlert } from "./alert.action";
 
 export const userClear = (): IDispatchUserClear => {
   return {
@@ -61,6 +61,8 @@ export const userRegister = (newUserPayload: INewUser) => async (
     if (response.status === HttpStatus.Created) {
       console.log("account created, redirect user to login");
 
+      dispatch(showAlert("Welcome!", "Account created successfully"));
+
       const { email, password } = newUserPayload;
 
       const credentials: IUserCredentials = {
@@ -87,7 +89,7 @@ export const userLogin = (credentials: IUserCredentials) => async (
   try {
     const response = await APIHelper.apiRequest<IUserAccessToken | IAPIError>(
       "POST",
-      "/auth/signin",
+      "/auth/login",
       credentials,
       false
     );

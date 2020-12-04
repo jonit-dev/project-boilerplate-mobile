@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 interface IProps {
   label: string;
@@ -52,7 +52,7 @@ const Container = styled.div`
     color: var(--ion-color-dark);
 
     display: block;
-    width: 95%;
+    width: 98%;
     border: none;
     border-bottom: 1px solid var(--ion-color-input-border);
     &:focus {
@@ -91,7 +91,7 @@ const Container = styled.div`
   .bar {
     position: relative;
     display: block;
-    width: 315px;
+    width: 99%;
   }
 
   .bar:before,
