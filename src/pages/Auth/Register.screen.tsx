@@ -6,6 +6,7 @@ import { FloatingInput } from "../../components/FloatingInput";
 import { FloatingInputMask } from "../../components/FloatingInputMask";
 import { FormBody, FormPanel, FormTitle } from "../../components/FormPanel";
 import { InternalPage } from "../../components/InternalPage";
+import { TS } from "../../libs/TranslationHelper";
 import { ValidationHelper } from "../../libs/ValidationHelper";
 import { showAlert } from "../../store/actions/alert.action";
 import { userRegister } from "../../store/actions/user.action";
@@ -41,18 +42,21 @@ export const RegisterScreen: React.FC = () => {
       {
         optionalFields: [],
         fieldLabels: {
-          name: "Name",
-          email: "E-mail",
-          password: "Password",
-          address: "Address",
-          phone: "Phone",
+          name: TS.translate("form", "name"),
+          email: TS.translate("form", "email"),
+          password: TS.translate("form", "password"),
+          address: TS.translate("form", "address"),
+          phone: TS.translate("form", "password"),
         },
       }
     );
 
     if (invalidFields) {
       dispatch(
-        showAlert("Oops!", `The following fields are empty: ${invalidFields}`)
+        showAlert(
+          TS.translate("global", "oops"),
+          `The following fields are empty: ${invalidFields}`
+        )
       );
     }
 
@@ -67,40 +71,40 @@ export const RegisterScreen: React.FC = () => {
   };
 
   return (
-    <InternalPage title={"Register"}>
+    <InternalPage title={TS.translate("auth", "register")}>
       <FormPanel>
-        <FormTitle>{"Create your Account"}</FormTitle>
+        <FormTitle>{TS.translate("auth", "createYourAccount")}</FormTitle>
         <FormBody>
           <FloatingInput
-            label={"Name"}
+            label={TS.translate("form", "name")}
             type="text"
             value={user.name}
             onChange={(e) => onInputChange(e, "name")}
           />
 
           <FloatingInput
-            label={"E-mail"}
+            label={TS.translate("form", "email")}
             type="text"
             value={user.email}
             onChange={(e) => onInputChange(e, "email")}
           />
 
           <FloatingInput
-            label={"Password"}
+            label={TS.translate("form", "password")}
             type="password"
             value={user.password}
             onChange={(e) => onInputChange(e, "password")}
           />
 
           <FloatingInput
-            label={"Address"}
+            label={TS.translate("form", "address")}
             type="text"
             value={user.address}
             onChange={(e) => onInputChange(e, "address")}
           />
 
           <FloatingInputMask
-            label={"Phone"}
+            label={TS.translate("form", "phone")}
             type="tel"
             mask={"(000) 000-0000"}
             value={user.phone}
@@ -109,7 +113,7 @@ export const RegisterScreen: React.FC = () => {
 
           <br />
           <IonButton expand="block" color="tertiary" onClick={onSubmit}>
-            Submit
+            {TS.translate("form", "submit")}
           </IonButton>
         </FormBody>
       </FormPanel>

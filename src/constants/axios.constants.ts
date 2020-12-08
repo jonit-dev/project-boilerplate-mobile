@@ -24,7 +24,7 @@ apiAxios.interceptors.response.use(
     if (!error.response) {
       store.dispatch(
         showAlert(
-          "Oops!",
+          TS.translate("global", "oops"),
           "Couldn't connect to the server. Please, check your internet connection!"
         )
       );
