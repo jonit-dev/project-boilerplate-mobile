@@ -1,0 +1,14 @@
+/* custom-colors.css allow us to pass these colors to the color attribute. See CustomButton.tsx */
+
+/* For reference about how to add custom colors: https://forum.ionicframework.com/t/adding-custom-colours-to-use-with-color-property/136919/2*/
+
+/* Color generator tool: https://ionicframework.com/jp/docs/es/theming/color-generator*/
+
+.ion-color-google {
+  --ion-color-base: #d84830;
+  --ion-color-base-rgb: 216, 72, 48;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #be3f2a;
+  --ion-color-tint: #dc5a45;
+}

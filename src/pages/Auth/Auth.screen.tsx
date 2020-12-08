@@ -1,20 +1,20 @@
-import { IonPage } from '@ionic/react';
-import { lockClosedOutline, mailOutline } from 'ionicons/icons';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { RouteComponentProps } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import { IonIcon, IonPage } from "@ionic/react";
+import { lockClosedOutline, logoGoogle, mailOutline } from "ionicons/icons";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { RouteComponentProps } from "react-router-dom";
+import styled from "styled-components/macro";
 
-import { BackgroundContainer } from '../../common/UI';
-import { CustomButton } from '../../components/CustomButton';
-import { Text } from '../../components/Text';
-import { TransparentInput } from '../../components/TransparentInput';
-import { appEnv } from '../../constants/env';
-import { TS } from '../../libs/TranslationHelper';
-import { showAlert } from '../../store/actions/alert.action';
-import { toggleLoading } from '../../store/actions/loading.action';
-import { userLogin } from '../../store/actions/user.action';
-import { IUserCredentials } from '../../store/types/user.types';
+import { BackgroundContainer } from "../../common/UI";
+import { CustomButton } from "../../components/CustomButton";
+import { Text } from "../../components/Text";
+import { TransparentInput } from "../../components/TransparentInput";
+import { appEnv } from "../../constants/env";
+import { TS } from "../../libs/TranslationHelper";
+import { showAlert } from "../../store/actions/alert.action";
+import { toggleLoading } from "../../store/actions/loading.action";
+import { userLogin } from "../../store/actions/user.action";
+import { IUserCredentials } from "../../store/types/user.types";
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
@@ -88,6 +88,19 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
 
             <CustomButton color="light" expand="full" onClick={onLogin}>
               {TS.translate("auth", "login")}
+            </CustomButton>
+
+            <br />
+
+            <CustomButton
+              color="google"
+              textColor="white"
+              expand="full"
+              onClick={() => console.log("logging in with google")}
+              iconSlot="start"
+              icon={<IonIcon icon={logoGoogle} />}
+            >
+              Sign In with Google
             </CustomButton>
 
             <TextContainer>

@@ -72,6 +72,8 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-form-division: #e9e9e9;
   --ion-color-input: #92949c;
   --ion-color-input-border: #c0c0c099;
+
+  /* Check custom-colors.css for more */
 }
 
 @media (prefers-color-scheme: dark) {
