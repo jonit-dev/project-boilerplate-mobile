@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
-    "@little-sentinel/shared": "^1.0.71",
+    "@little-sentinel/shared": "^1.0.75",
     "@types/lodash": "^4.14.165",
     "font-awesome": "^4.7.0",
     "husky": "^4.3.0",

@@ -1,6 +1,6 @@
 import { IonIcon, IonPage } from "@ionic/react";
 import { lockClosedOutline, logoGoogle, mailOutline } from "ionicons/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
 import styled from "styled-components/macro";
@@ -10,11 +10,13 @@ import { CustomButton } from "../../components/CustomButton";
 import { Text } from "../../components/Text";
 import { TransparentInput } from "../../components/TransparentInput";
 import { appEnv } from "../../constants/env";
+import { OAuthHelper } from "../../libs/OAuthHelper";
+import { RoutingHelper } from "../../libs/RoutingHelper";
 import { TS } from "../../libs/TranslationHelper";
 import { showAlert } from "../../store/actions/alert.action";
 import { toggleLoading } from "../../store/actions/loading.action";
 import { userLogin } from "../../store/actions/user.action";
-import { IUserCredentials } from "../../store/types/user.types";
+import { IUserCredentials, UserActionTypes } from "../../store/types/user.types";
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
@@ -23,6 +25,31 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const logoImg = require(`../../assets/images/${appEnv.institutionLogo}`);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      //* Handle OAuth callbacks
+
+      if (window.location.href.includes("accessToken")) {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const accessToken = urlParams.get("accessToken");
+
+        await dispatch(
+          toggleLoading(true, TS.translate("global", "waitMessage"))
+        );
+
+        await dispatch({
+          type: UserActionTypes.login,
+          payload: { accessToken },
+        });
+
+        RoutingHelper.redirect("/main");
+
+        await dispatch(toggleLoading(false));
+      }
+    })();
+  }, [dispatch]);
 
   const onRegisterClick = (e) => {
     e.preventDefault();
@@ -56,6 +83,24 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
     await dispatch(toggleLoading(false));
 
     console.log("Logging in user...");
+  };
+
+  const onSignInGoogle = async () => {
+    const googleOAuthUrl = await OAuthHelper.getGoogleOAuthUrl();
+
+    if (!googleOAuthUrl) {
+      dispatch(
+        showAlert(
+          TS.translate("global", "oops"),
+          TS.translate("auth", "oauthLoginError")
+        )
+      );
+
+      return;
+    }
+
+    // if everything is allright, lets just redirect the user to our OAuth login
+    window.location.href = googleOAuthUrl;
   };
 
   return (
@@ -96,11 +141,11 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
               color="google"
               textColor="white"
               expand="full"
-              onClick={() => console.log("logging in with google")}
+              onClick={onSignInGoogle}
               iconSlot="start"
               icon={<IonIcon icon={logoGoogle} />}
             >
-              Sign In with Google
+              {TS.translate("auth", "signInWithGoogle")}
             </CustomButton>
 
             <TextContainer>
