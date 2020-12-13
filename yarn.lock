@@ -1452,10 +1452,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@little-sentinel/shared@^1.0.75":
-  version "1.0.75"
-  resolved "https://registry.yarnpkg.com/@little-sentinel/shared/-/shared-1.0.75.tgz#9cd0bd39b06a8c93bcbeffd702899adcc2f9033e"
-  integrity sha512-EHrd5AZemT+bSFCJzYBMQpGDNR/oRNuNomWPv1Lt/SAvcCW893mcIOeTRHv8jSWxOoQ0mFVNtn6zYFw0i1f1EQ==
+"@little-sentinel/shared@^1.0.76":
+  version "1.0.76"
+  resolved "https://registry.yarnpkg.com/@little-sentinel/shared/-/shared-1.0.76.tgz#db7d0de816a72aba35ae665b6d0e74d2f89189d4"
+  integrity sha512-QaEtnYeaHqKCuCFqafUzN4bUG36ygnwiHtlTKJcuH0jJmsxan9NDaCh/RbuauNalALdHmoMv3h+zCo5nVxkbSw==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

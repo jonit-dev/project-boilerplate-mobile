@@ -33,18 +33,20 @@ export const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <IonApp>
-          <GlobalStyles>
+        <GlobalStyles>
+          <IonApp>
             <Alert />
             <ShowLoading />
             <RouterMiddleware />
-          </GlobalStyles>
-        </IonApp>
+          </IonApp>
+        </GlobalStyles>
       </PersistGate>
     </Provider>
   );
 };
 
 const GlobalStyles = styled.div`
-  font-family: "SF Pro Display";
+  * {
+    font-family: "SF Pro Display";
+  }
 `;

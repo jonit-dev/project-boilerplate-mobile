@@ -1,39 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { RippleEffect } from './RippleEffect';
+import { colors } from "../constants/colors.constants";
 
 interface IProps {
-  color?: string;
-  faded?: boolean;
-  children: string;
-  onClick?: (e) => void;
+  /* in hex */
+  color?: string | undefined;
+  children: React.ReactChild;
 }
 
-export const Text: React.FC<IProps> = ({
-  color = "white",
-  faded = true,
-  children,
-  onClick,
-}) => {
-  return (
-    <P color={color} faded={faded} onClick={onClick}>
-      <RippleEffect>{children}</RippleEffect>
-    </P>
-  );
+export const Text: React.FC<IProps> = ({ color, children }) => {
+  return <P color={color}>{children}</P>;
 };
 
-interface ITextProps {
-  faded: boolean;
-  color: string;
-  onClick?: (e) => void;
+interface IPProps {
+  color: string | undefined;
 }
 
-const P = styled.div<ITextProps>`
-  color: ${(props) => props.color};
-  opacity: ${(props) => (props.faded ? 0.5 : 1)};
-  text-align: center;
-  font-size: 0.9rem;
-  cursor: ${(props) => (props.onClick ? "pointer" : null)};
-  padding: 0.4rem;
+const P = styled.p<IPProps>`
+  color: ${(props) => (props.color ? props.color : colors.dark)};
+  font-size: 1rem;
 `;

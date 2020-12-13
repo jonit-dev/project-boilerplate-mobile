@@ -6,8 +6,8 @@ import { RouteComponentProps } from "react-router-dom";
 import styled from "styled-components/macro";
 
 import { BackgroundContainer } from "../../common/UI";
+import { ClickableText } from "../../components/ClickableText";
 import { CustomButton } from "../../components/CustomButton";
-import { Text } from "../../components/Text";
 import { TransparentInput } from "../../components/TransparentInput";
 import { appEnv } from "../../constants/env";
 import { OAuthHelper } from "../../libs/OAuthHelper";
@@ -16,7 +16,10 @@ import { TS } from "../../libs/TranslationHelper";
 import { showAlert } from "../../store/actions/alert.action";
 import { toggleLoading } from "../../store/actions/loading.action";
 import { userLogin } from "../../store/actions/user.action";
-import { IUserCredentials, UserActionTypes } from "../../store/types/user.types";
+import {
+  IUserCredentials,
+  UserActionTypes,
+} from "../../store/types/user.types";
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
@@ -55,6 +58,10 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
     e.preventDefault();
 
     history.push("/auth/register");
+  };
+
+  const onForgotPasswordClick = () => {
+    history.push("/auth/forgot-password");
   };
 
   const onLogin = async () => {
@@ -149,15 +156,12 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
             </CustomButton>
 
             <TextContainer>
-              <Text faded onClick={onRegisterClick}>
+              <ClickableText faded onClick={onRegisterClick}>
                 {TS.translate("auth", "createYourAccount")}
-              </Text>
-              {/* <Text faded>
-                {TranslationHelper.get(
-                  Entities.Auth,
-                  AuthTranslationKeys.ForgotPassword
-                )}
-              </Text> */}
+              </ClickableText>
+              <ClickableText faded onClick={onForgotPasswordClick}>
+                {TS.translate("auth", "forgotPassword")}
+              </ClickableText>
             </TextContainer>
           </CenterContainer>
         </Container>
