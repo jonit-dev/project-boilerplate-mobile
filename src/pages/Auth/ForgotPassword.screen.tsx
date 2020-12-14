@@ -19,8 +19,8 @@ export const ForgotPasswordScreen: React.FC = () => {
 
         <FormBody>
           <Text>
-            Please, type the e-mail that you used to create you account below,
-            and we'll submit your password afterwards.
+            Please, type the e-mail that you used to create you account below.
+            We'll generate a new password and submit to you.
           </Text>
           <FloatingInput
             label={TS.translate("form", "email")}
