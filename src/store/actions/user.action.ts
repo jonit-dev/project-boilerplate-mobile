@@ -47,6 +47,37 @@ export const userInfoRefresh = () => async (
   }
 };
 
+export const userForgotPassword = (email: string) => async (
+  dispatch: Dispatch<IDispatchAlertShow>
+) => {
+  try {
+    const response = await APIHelper.apiRequest(
+      "POST",
+      "/users/forgot-password",
+      { email }
+    );
+
+    if (response.status === HttpStatus.OK) {
+      console.log("Password recovery run successfully");
+
+      dispatch(
+        showAlert(
+          TS.translate("global", "success"),
+          TS.translate("auth", "passwordRecoverySuccess")
+        )
+      );
+    }
+  } catch (error) {
+    console.error(error);
+
+    const errorPayload = error.response.data as IAPIError;
+
+    const errorMessage = APIHelper.handleErrorMessage(errorPayload.message);
+
+    dispatch(showAlert(TS.translate("global", "oops"), errorMessage));
+  }
+};
+
 export const userRegister = (newUserPayload: INewUser) => async (
   dispatch: Dispatch<IDispatchAlertShow | ReturnType<typeof userLogin>>
 ) => {
@@ -61,7 +92,12 @@ export const userRegister = (newUserPayload: INewUser) => async (
     if (response.status === HttpStatus.Created) {
       console.log("account created, redirect user to login");
 
-      dispatch(showAlert("Welcome!", "Account created successfully"));
+      dispatch(
+        showAlert(
+          TS.translate("email", "welcome"),
+          TS.translate("email", "accountCreatedSuccessfully")
+        )
+      );
 
       const { email, password } = newUserPayload;
 
