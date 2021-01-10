@@ -1,4 +1,4 @@
-import { HttpStatus, IUserEntity } from "@little-sentinel/shared";
+import { HttpStatus, IUserEntity } from "@project-boilerplate/shared";
 import { Dispatch } from "react";
 
 import { APIHelper } from "../../libs/APIHelper";

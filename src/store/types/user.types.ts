@@ -1,4 +1,4 @@
-import { IUserEntity } from "@little-sentinel/shared";
+import { IUserEntity } from "@project-boilerplate/shared";
 
 export interface IUser extends IUserEntity {
   name: string | null;

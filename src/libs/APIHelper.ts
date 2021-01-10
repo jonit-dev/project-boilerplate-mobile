@@ -1,8 +1,8 @@
-import { TextHelper } from '@little-sentinel/shared';
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { TextHelper } from "@project-boilerplate/shared";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-import { apiAxios } from '../constants/axios.constants';
-import { store } from '../store/persist.store';
+import { apiAxios } from "../constants/axios.constants";
+import { store } from "../store/persist.store";
 
 export class APIHelper {
   public static async request<T>(

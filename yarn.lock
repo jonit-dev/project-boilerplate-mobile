@@ -1452,11 +1452,6 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@little-sentinel/shared@^1.0.80":
-  version "1.0.80"
-  resolved "https://registry.yarnpkg.com/@little-sentinel/shared/-/shared-1.0.80.tgz#da8a8b12181416c08885867ba01f67f705b28e47"
-  integrity sha512-z1riFRAymkPr3H8sROtPC+Y46X/og6yPfFt5nB3x8+wP5V2xKPfYNvd60RozOO1nt9Eb37ohQs67Za6GJgu5Yg==
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1469,6 +1464,11 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
+
+"@project-boilerplate/shared@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@project-boilerplate/shared/-/shared-1.0.2.tgz#010f6b186eba944fad319c6723785af5aa6eeeca"
+  integrity sha512-aIEmtgpenTdRlBRWOEdmdMQ05NBrURzt2GFQgKairQNaohFd41MPzwVWQjiFubqswVkAcnr8pJEGX/wI4jpucQ==
 
 "@sheerun/mutationobserver-shim@^0.3.2":
   version "0.3.3"
