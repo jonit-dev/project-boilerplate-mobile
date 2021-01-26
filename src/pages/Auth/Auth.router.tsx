@@ -3,7 +3,6 @@ import React from "react";
 import { Route, RouteComponentProps } from "react-router-dom";
 
 import { AuthScreen } from "./Auth.screen";
-import { ChangePasswordScreen } from "./ChangePassword.screen";
 import { ForgotPasswordScreen } from "./ForgotPassword.screen";
 import { RegisterScreen } from "./Register.screen";
 
@@ -15,10 +14,6 @@ export const AuthRouter: React.FC<RouteComponentProps> = ({ match }) => {
       <Route
         path={`${match.url}/forgot-password`}
         component={ForgotPasswordScreen}
-      />
-      <Route
-        path={`${match.url}/change-password`}
-        component={ChangePasswordScreen}
       />
     </IonRouterOutlet>
   );

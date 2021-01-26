@@ -202,9 +202,9 @@ export const userChangePassword = (changePassword: IChangePasswords) => async (
         )
       );
 
-      setTimeout(() => {
-        dispatch(clearAlert());
-        dispatch(userClear());
+      setTimeout(async () => {
+        await dispatch(clearAlert());
+        await dispatch(userClear());
         RoutingHelper.redirect("/auth");
       }, 3000);
     } else {

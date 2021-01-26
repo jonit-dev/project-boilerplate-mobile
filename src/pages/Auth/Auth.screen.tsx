@@ -149,9 +149,6 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
               <ClickableText faded href="/auth/forgot-password">
                 {TS.translate("auth", "forgotPassword")}
               </ClickableText>
-              <ClickableText faded href="/auth/change-password">
-                {TS.translate("auth", "changePassword")}
-              </ClickableText>
             </TextContainer>
           </CenterContainer>
         </Container>
