@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { BackgroundContainer } from "../../common/UI";
 import { ClickableText } from "../../components/ClickableText";
 import { CustomButton } from "../../components/CustomButton";
 import { TransparentInput } from "../../components/TransparentInput";
@@ -13,6 +12,7 @@ import { appEnv } from "../../constants/env";
 import { OAuthHelper } from "../../libs/OAuthHelper";
 import { RoutingHelper } from "../../libs/RoutingHelper";
 import { TS } from "../../libs/TranslationHelper";
+import { BackgroundContainer } from "../../shared/UI";
 import { showAlert } from "../../store/actions/alert.action";
 import { toggleLoading } from "../../store/actions/loading.action";
 import { userLogin } from "../../store/actions/user.action";
@@ -50,20 +50,6 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
       }
     })();
   }, [dispatch]);
-
-  const onRegisterClick = (e) => {
-    e.preventDefault();
-
-    history.push("/auth/register");
-  };
-
-  const onForgotPasswordClick = () => {
-    history.push("/auth/forgot-password");
-  };
-
-  const onChangePasswordClick = () => {
-    history.push("/auth/change-password");
-  };
 
   const onLogin = async () => {
     // Basic validation ========================================
@@ -157,13 +143,13 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
             </CustomButton>
 
             <TextContainer>
-              <ClickableText faded onClick={onRegisterClick}>
+              <ClickableText faded href="/auth/register">
                 {TS.translate("auth", "createYourAccount")}
               </ClickableText>
-              <ClickableText faded onClick={onForgotPasswordClick}>
+              <ClickableText faded href="/auth/forgot-password">
                 {TS.translate("auth", "forgotPassword")}
               </ClickableText>
-              <ClickableText faded onClick={onChangePasswordClick}>
+              <ClickableText faded href="/auth/change-password">
                 {TS.translate("auth", "changePassword")}
               </ClickableText>
             </TextContainer>

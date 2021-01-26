@@ -1,25 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 
+import { RoutingHelper } from "../libs/RoutingHelper";
 import { RippleEffect } from "./RippleEffect";
 
 interface IProps {
   color?: string;
   faded?: boolean;
   children: string;
-  onClick?: (e) => void;
   rippleEffect?: boolean;
+  href?: string;
 }
 
 export const ClickableText: React.FC<IProps> = ({
   color = "white",
   faded = true,
   children,
-  onClick,
   rippleEffect = true,
+  href,
 }) => {
+  const onClickableTextClick = () => {
+    if (href) {
+      RoutingHelper.redirect(href);
+    }
+  };
+
   return (
-    <P color={color} faded={faded} onClick={onClick}>
+    <P color={color} faded={faded} onClick={onClickableTextClick}>
       {rippleEffect ? (
         <RippleEffect>{children}</RippleEffect>
       ) : (
