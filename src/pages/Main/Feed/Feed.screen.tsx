@@ -4,6 +4,7 @@ import React from "react";
 import { SideMenuPage } from "../../../components/SideMenu/SideMenuPage";
 
 export const FeedScreen: React.FC = () => {
+  // this is a comment
   return (
     <SideMenuPage>
       <IonCard>
