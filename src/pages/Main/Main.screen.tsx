@@ -10,10 +10,10 @@ export const MainScreen: React.FC = () => {
   const { name } = useParams<{ name: string }>();
 
   switch (name) {
-    case "Feed":
+    case "feed":
       return <FeedScreen />;
 
-    case "Settings":
+    case "settings":
       return <SettingsScreen />;
 
     default:

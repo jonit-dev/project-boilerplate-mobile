@@ -195,6 +195,7 @@ export const userChangePassword = (changePassword: IChangePasswords) => async (
     );
 
     if (response.status === HttpStatus.OK) {
+      console.log("Password changed successfully!");
       dispatch(
         showAlert(
           TS.translate("global", "success"),
@@ -202,11 +203,8 @@ export const userChangePassword = (changePassword: IChangePasswords) => async (
         )
       );
 
-      setTimeout(async () => {
-        await dispatch(clearAlert());
-        await dispatch(userClear());
-        RoutingHelper.redirect("/auth");
-      }, 3000);
+      dispatch(userClear());
+      RoutingHelper.redirect("/auth");
     } else {
       dispatch(
         showAlert(

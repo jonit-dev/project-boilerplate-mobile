@@ -7,7 +7,7 @@ export const SettingsScreen: React.FC = () => {
   return (
     <SideMenuPage>
       <IonList>
-        <IonItem routerLink="/main/Settings/change-password">
+        <IonItem routerLink="/main/settings/change-password">
           <IonLabel>Change Password</IonLabel>
         </IonItem>
       </IonList>

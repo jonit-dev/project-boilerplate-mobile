@@ -27,13 +27,13 @@ interface IAppPage {
 const appPages: IAppPage[] = [
   {
     title: "Feed",
-    url: "/main/Feed",
+    url: "/main/feed",
     iosIcon: flameOutline,
     mdIcon: flameSharp,
   },
   {
     title: "Settings",
-    url: "/main/Settings",
+    url: "/main/settings",
     iosIcon: personCircleOutline,
     mdIcon: personCircleSharp,
   },

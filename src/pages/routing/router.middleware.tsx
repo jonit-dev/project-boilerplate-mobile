@@ -21,7 +21,7 @@ export const RouterMiddleware: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // IF we have an user token to actually refresh some info from...
+    // When user opens the app, refresh its own info!
     if (user.token) {
       console.log("Refreshing user info");
       dispatch(userInfoRefresh());
