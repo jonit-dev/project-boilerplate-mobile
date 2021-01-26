@@ -1,5 +1,5 @@
 {
-  "name": "little-sentinel",
+  "name": "project-boilerplate-mobile",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -42,7 +42,7 @@
   "scripts": {
     "bootstrap": "yarn run update:shared-deps && react-scripts start",
     "start": "react-scripts start",
-    "update:shared-deps": "yarn upgrade --scope @little-sentinel --latest",
+    "update:shared-deps": "yarn upgrade --scope @project-boilerplate --latest",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.2",
-    "@project-boilerplate/shared": "^1.0.2",
+    "@project-boilerplate/shared": "^1.0.17",
     "@types/lodash": "^4.14.165",
     "font-awesome": "^4.7.0",
     "husky": "^4.3.0",

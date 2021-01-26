@@ -1,12 +1,14 @@
 import { HttpStatus, IUserEntity } from "@project-boilerplate/shared";
 import { Dispatch } from "react";
 
+import { appEnv } from "../../constants/env";
 import { APIHelper } from "../../libs/APIHelper";
 import { RoutingHelper } from "../../libs/RoutingHelper";
 import { TS } from "../../libs/TranslationHelper";
 import { AlertActionTypes, IAlert, IDispatchAlertShow } from "../types/alert.types";
 import { IAPIError } from "../types/api.types";
 import {
+  IChangePasswords,
   IDispatchUserClear,
   IDispatchUserInfo,
   IDispatchUserLogin,
@@ -15,7 +17,7 @@ import {
   IUserCredentials,
   UserActionTypes,
 } from "../types/user.types";
-import { showAlert } from "./alert.action";
+import { clearAlert, showAlert } from "./alert.action";
 
 export const userClear = (): IDispatchUserClear => {
   return {
@@ -174,5 +176,48 @@ export const userLogin = (credentials: IUserCredentials) => async (
     });
 
     console.log(errorPayload);
+  }
+};
+
+export const userChangePassword = (changePassword: IChangePasswords) => async (
+  dispatch: Dispatch<
+    | IDispatchUserLogin
+    | ReturnType<typeof showAlert>
+    | ReturnType<typeof userClear>
+    | ReturnType<typeof clearAlert>
+  >
+) => {
+  try {
+    const response = await APIHelper.apiRequest(
+      "POST",
+      "/auth/change-password",
+      changePassword
+    );
+
+    if (response.status === HttpStatus.OK) {
+      dispatch(
+        showAlert(
+          TS.translate("global", "success"),
+          TS.translate("email", "passwordChangeSuccess")
+        )
+      );
+
+      setTimeout(() => {
+        dispatch(clearAlert());
+        dispatch(userClear());
+        RoutingHelper.redirect("/auth");
+      }, 3000);
+    } else {
+      dispatch(
+        showAlert(
+          TS.translate("global", "oops"),
+          TS.translate("auth", "changePasswordGenericError", {
+            adminEmail: appEnv.adminEmail,
+          })
+        )
+      );
+    }
+  } catch (error) {
+    console.error(error);
   }
 };

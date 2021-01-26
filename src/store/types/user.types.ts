@@ -19,6 +19,11 @@ export interface IUserCredentials {
   password: string;
 }
 
+export interface IChangePasswords {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export interface IUserAccessToken {
   accessToken: string;
 }

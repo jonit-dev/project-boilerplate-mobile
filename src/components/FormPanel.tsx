@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 interface IProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ export const FormPanel: React.FC<IProps> = ({ children }) => {
   return <Container>{children}</Container>;
 };
 
-const Container = styled.div`
+const Container = styled.form`
   background-color: white;
   border-radius: 8px;
   -webkit-box-shadow: 2px 1px 6px 1px rgba(0, 0, 0, 0.26);

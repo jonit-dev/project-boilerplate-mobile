@@ -16,10 +16,7 @@ import { TS } from "../../libs/TranslationHelper";
 import { showAlert } from "../../store/actions/alert.action";
 import { toggleLoading } from "../../store/actions/loading.action";
 import { userLogin } from "../../store/actions/user.action";
-import {
-  IUserCredentials,
-  UserActionTypes,
-} from "../../store/types/user.types";
+import { IUserCredentials, UserActionTypes } from "../../store/types/user.types";
 
 export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
   const [email, setEmail] = useState<string>("");
@@ -62,6 +59,10 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
 
   const onForgotPasswordClick = () => {
     history.push("/auth/forgot-password");
+  };
+
+  const onChangePasswordClick = () => {
+    history.push("/auth/change-password");
   };
 
   const onLogin = async () => {
@@ -161,6 +162,9 @@ export const AuthScreen: React.FC<RouteComponentProps> = ({ history }) => {
               </ClickableText>
               <ClickableText faded onClick={onForgotPasswordClick}>
                 {TS.translate("auth", "forgotPassword")}
+              </ClickableText>
+              <ClickableText faded onClick={onChangePasswordClick}>
+                {TS.translate("auth", "changePassword")}
               </ClickableText>
             </TextContainer>
           </CenterContainer>
