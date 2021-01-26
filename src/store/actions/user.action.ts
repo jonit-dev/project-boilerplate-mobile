@@ -96,8 +96,8 @@ export const userRegister = (newUserPayload: INewUser) => async (
 
       dispatch(
         showAlert(
-          TS.translate("email", "welcome"),
-          TS.translate("email", "accountCreatedSuccessfully")
+          TS.translate("global", "success"),
+          TS.translate("auth", "accountCreatedSuccessfully")
         )
       );
 

@@ -10,6 +10,7 @@ export interface INewUser {
   name: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
   address: string;
   phone: string;
 }

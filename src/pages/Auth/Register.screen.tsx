@@ -19,6 +19,7 @@ export const RegisterScreen: React.FC = () => {
     name: "",
     email: "",
     password: "",
+    passwordConfirmation: "",
     address: "",
     phone: "",
   });
@@ -40,11 +41,11 @@ export const RegisterScreen: React.FC = () => {
         ...user,
       },
       {
-        optionalFields: [],
         fieldLabels: {
           name: TS.translate("form", "name"),
           email: TS.translate("form", "email"),
           password: TS.translate("form", "password"),
+          passwordConfirmation: TS.translate("form", "passwordConfirmation"),
           address: TS.translate("form", "address"),
           phone: TS.translate("form", "password"),
         },
@@ -94,6 +95,12 @@ export const RegisterScreen: React.FC = () => {
             type="password"
             value={user.password}
             onChange={(e) => onInputChange(e, "password")}
+          />
+          <FloatingInput
+            label={TS.translate("form", "passwordConfirmation")}
+            type="password"
+            value={user.passwordConfirmation}
+            onChange={(e) => onInputChange(e, "passwordConfirmation")}
           />
 
           <FloatingInput

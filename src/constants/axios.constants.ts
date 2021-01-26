@@ -29,6 +29,10 @@ apiAxios.interceptors.response.use(
         )
       );
 
+      if (!window.location.pathname.includes("auth")) {
+        RoutingHelper.redirect("/auth");
+      }
+
       //Clear user info and force a logout by redirecting him to auth
       // store.dispatch(userLogout());
 
